@@ -1,0 +1,59 @@
+/* Styles pour le tableau d'auteurs */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+/* Textbox et bouton submit du form de recherche d'auteurs */
+input[type=text] {
+    border-radius: 5px;
+    border-width: 1px;
+    padding: 5px;
+    margin: 5px;
+}
+input[type=submit] {
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Logo et message d'erreur cote à cote*/
+#error-message {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+#error-message img {
+    max-width: 125px;
+    max-height: 125px;
+    margin-right: 20px;
+}
+#error-message p {
+    color: #4CAF50;
+    font-size: 1.5em;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}

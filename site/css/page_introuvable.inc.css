@@ -1,0 +1,18 @@
+/* Logo et message d'erreur cote à cote*/
+#error-message {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+#error-message img {
+    max-width: 500px;
+    max-height: 500px;
+    margin-right: 20px;
+}
+#error-message p {
+    color: #4CAF50;
+    font-size: 4em;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}

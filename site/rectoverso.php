@@ -34,7 +34,7 @@
           include("page_".$page.".inc.php");
       }
       else{
-          echo "Page non trouvée";
+          include("page_introuvable.inc.php");
       }
       ?>
     </div>
