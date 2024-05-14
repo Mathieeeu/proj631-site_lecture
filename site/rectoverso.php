@@ -19,13 +19,15 @@
 ?>
 
 <body>
+    <div id='Barre_horizontale'>
+        
+    </div>
+
     <div id="entete">
         <h1>Recto Verso</h1>
     </div>
 
-    <div id='Barre_horizontale'>
-        
-    </div>
+    
     <div id="contenu">
       <?php
       if(!isset($_GET["page"]) ) { 

@@ -1,4 +1,10 @@
 /*test*/
 #Barre_horizontale {
     background-color: #008585;
+    height: 50px; 
+    width: 100%;
+}
+
+#Contenu {
+    background-color: #fbf2c4;
 }
