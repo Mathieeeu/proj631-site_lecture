@@ -5,7 +5,7 @@ public class Table{
     private String nom; // nom de la table
     private int nbColonnes; //nombre de colonnes
     private ArrayList <String> nomsColonnes; //liste des noms de colonnes
-    private boolean action; // est-ce que l'action sur la table a pu être effectuer ?
+    private boolean action; // est-ce que l'action sur la table a pu être effectuée ?
     private ArrayList<Donnees> donnees; //Liste de l'ensemble des données de notre table
 
     public Table (String nom, int nbColonnes, ArrayList <String> nomsColonnes){
@@ -26,6 +26,10 @@ public class Table{
 
     public ArrayList <String> getNomsColonnes(){
         return this.nomsColonnes;
+    }
+
+    public ArrayList <Donnees> getDonnees(){
+        return this.donnees;
     }
 
     public boolean supprimerTable(){
