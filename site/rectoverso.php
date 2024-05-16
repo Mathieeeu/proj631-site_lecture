@@ -4,6 +4,7 @@ if (!isset($_SESSION["connecte"])){
         'cookie_lifetime' => 86400,
     ]);
     $_SESSION["connecte"] = false;
+    $_SESSION["identifiant"] = "";
 }
 ?>
 <!DOCTYPE html>
