@@ -8,11 +8,6 @@ if (!isset($_SESSION)){
         $_SESSION["connecte"] = false;
         $_SESSION["identifiant"] = "";
     }
-    echo "BONJOUR".$_SESSION["connecte"].$_SESSION["identifiant"];
-}
-else {
-    echo "BOINJOUR";
-}
 ?>
 
 <!DOCTYPE html>
