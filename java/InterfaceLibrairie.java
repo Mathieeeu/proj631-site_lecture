@@ -55,6 +55,7 @@ public class InterfaceLibrairie extends JFrame {
         JPanel actions=new JPanel();
         Color fond_boutons=Color.decode("#74a892");
         Color couleur_boutons=Color.decode("#008585");
+
         actions.setBackground(fond_boutons);
         JButton ajouter=new JButton("Ajouter");
         ajouter.addActionListener(new ActionListener() {
@@ -110,8 +111,16 @@ public class InterfaceLibrairie extends JFrame {
             }
         });
         ajouter.setForeground(couleur_boutons);
+
         JButton modifier=new JButton("Modifier");
         modifier.setForeground(couleur_boutons);
+        modifier.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
         JButton supprimer=new JButton("Supprimer");
         supprimer.addActionListener(new ActionListener() {
             @Override
@@ -206,11 +215,31 @@ public class InterfaceLibrairie extends JFrame {
     }
 
     private void suppression_zone_ajout(){
+        System.out.println("Mise à jour de l'interface en cours");
+        // partie affichage des données
+        ArrayList<Donnees> liste_donnees = this.table_selectionnee.getDonnees();
+        affichage.removeAll();
+        for (Donnees donnee : liste_donnees) {
+            JButton bouton_donnee=new JButton("<html>" + donnee.affichage_interface() + "</html>");
+            bouton_donnee.setOpaque(false);
+            bouton_donnee.setContentAreaFilled(false);
+            bouton_donnee.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // On récupère la donnée sélectionnee
+                    donnee_selectionnee=donnee;
+                    System.out.println("Donnée sélectionnée : " + donnee_selectionnee.affichage_donnee());
+                }
+            });            
+            affichage.add(bouton_donnee);
+        }
+        // partie pour la zone d'ajout d'une donnée
+        
+        //mise à jour de l'affichage pour masquer la zone d'ajout d'une donnée
         zone_ajout.removeAll();
         Color couleur_fond=Color.decode("#fbf2c4");
         zone_ajout.setBackground(couleur_fond);
         zone_ajout.revalidate();
         zone_ajout.repaint();
-
     }
 }
