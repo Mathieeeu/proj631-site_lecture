@@ -67,7 +67,8 @@ public class InterfaceLibrairie extends JFrame {
         // création de la zone d'affichage des données
         affichage=new JPanel();
         affichage.setBackground(couleur_fond);
-        affichage.setPreferredSize(new Dimension(640, 380));
+        affichage.setPreferredSize(new Dimension(680, 380));
+        affichage.setLayout(new BoxLayout(affichage, BoxLayout.Y_AXIS));
         Color couleur_bordure=Color.decode("#c7522a");
         Border border=BorderFactory.createLineBorder(couleur_bordure, 5);
         affichage.setBorder(border);
@@ -75,10 +76,10 @@ public class InterfaceLibrairie extends JFrame {
 
         ArrayList<Donnees> liste_donnees=this.table_selectionnee.getDonnees();
         for (Donnees donnee : liste_donnees) {
-            JButton nouvelle_donnee=new JButton("<html>" + String.join("<br>", donnee.getContenu()) + "</html>");
-            nouvelle_donnee.setOpaque(false);
-            nouvelle_donnee.setContentAreaFilled(false);
-            affichage.add(nouvelle_donnee);
+            JButton bouton_donnee=new JButton("<html>" + donnee.affichage_interface() + "</html>");
+            bouton_donnee.setOpaque(false);
+            bouton_donnee.setContentAreaFilled(false);
+            affichage.add(bouton_donnee);
 
         }
 
@@ -86,7 +87,7 @@ public class InterfaceLibrairie extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Récupérer l'option sélectionnée
-                String selection_table = (String) choix_table.getSelectedItem();
+                String selection_table=(String) choix_table.getSelectedItem();
                 System.out.println("Table sélectionnée : " + selection_table);
                 for (Table t : liste_tables) {
                     if (t.getNom().equals(selection_table)) {
@@ -111,10 +112,19 @@ public class InterfaceLibrairie extends JFrame {
         ArrayList<Donnees> liste_donnees = this.table_selectionnee.getDonnees();
         affichage.removeAll();
         for (Donnees donnee : liste_donnees) {
-            JButton nouvelle_donnee = new JButton("<html>" + String.join("<br>", donnee.getContenu()) + "</html>");
-            nouvelle_donnee.setOpaque(false);
-            nouvelle_donnee.setContentAreaFilled(false);
-            affichage.add(nouvelle_donnee);
+            JButton bouton_donnee=new JButton("<html>" + donnee.affichage_interface() + "</html>");
+            bouton_donnee.setOpaque(false);
+            bouton_donnee.setContentAreaFilled(false);
+            bouton_donnee.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Supprimer la donnée sélectionnée
+                    //table_selectionnee.supprimerDonnee(donnee);
+                    // Mettre à jour l'interface
+                    mise_a_jour_interface();
+                }
+            });
+            affichage.add(bouton_donnee);
         }
         // mise à jour de l'affichage
         affichage.revalidate();

@@ -22,6 +22,17 @@ public class Donnees{
         System.out.print(res+")");
     }
 
+    public String affichage_interface(){
+        String res="";
+        for (String content : this.contenu){
+            res+=content+" - \n";
+        }
+        System.out.println(res);
+        return res;
+
+
+    }
+
     public void supprimerDonnee(){
         this.contenu=new ArrayList<>();
         this.tb=null;

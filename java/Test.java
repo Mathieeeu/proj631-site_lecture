@@ -61,24 +61,10 @@ public class Test{
         // ajout des données à la table
         table_livre.ajouterDonnees(dl1);
         table_livre.ajouterDonnees(dl2);
-
-
-
-        //Table utilisateur :
-        ArrayList <String> col_utilisateur=new ArrayList<String>();
-        col_utilisateur.add("pseudo");
-        col_utilisateur.add("mot_de_passe");
-        col_utilisateur.add("date_inscription");
-        Table table_utilisateur = new Table("utilisateur", 3,col_utilisateur);
-
-        
-
-
        
         ArrayList<Table> liste_tables = new ArrayList<>();
         liste_tables.add(table_auteur);
         liste_tables.add(table_livre);
-        liste_tables.add(table_utilisateur);
 
         InterfaceLibrairie f=new InterfaceLibrairie(liste_tables);
 		f.setVisible(true);
