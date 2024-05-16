@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 
 public class Table{
-    private String nom;
-    private int nbColonnes;
-    private ArrayList <String> nomsColonnes;
-    private boolean action;
+    //Un table permet de représenter une table de base de données avec les actions que nous pouvons effectuer dedans
+    private String nom; // nom de la table
+    private int nbColonnes; //nombre de colonnes
+    private ArrayList <String> nomsColonnes; //liste des noms de colonnes
+    private boolean action; // est-ce que l'action sur la table a pu être effectuer ?
 
     public Table (String nom, int nbColonnes, ArrayList <String> nomsColonnes){
         this.nom=nom;
@@ -26,6 +27,9 @@ public class Table{
     }
 
     public void supprimerTable(){
-
+        this.nom=null;
+        this.nbColonnes=0;
+        this.nomsColonnes=new ArrayList<String>();
+        this.action=true;
     }
 }
