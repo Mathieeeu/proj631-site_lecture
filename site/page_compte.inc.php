@@ -14,14 +14,15 @@
 </head>
 
 <?php
-
+$pseudo_oskour = "camasl";
+$pseudo = $_SESSION['identifiant'];
 // Recup user_pp (profil picture)
 //$img_profil = "../images/".$_SESSION["pseudo"]."_pp.jpg";
 
 $test_pseudo_pp = "bernard_tapin";
 $img_profil = "../images/".$test_pseudo_pp."_pp.jpg";
 
-$pseudo = $_SESSION['identifiant'];
+
 // Affichage image de profil, pseudo et date d'inscription
 $sql = "SELECT id_utilisateur, date_inscription FROM PROJ631_utilisateur WHERE pseudo = '".$pseudo."'";
 $result_date = mysqli_query($conn, $sql) or die("Requête invalide: ". mysqli_error( $conn )."\n".$sql);
