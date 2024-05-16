@@ -1,5 +1,5 @@
 <head>
-  <link rel="stylesheet" type="text/css" href="css/page_compte.css">
+  <link rel="stylesheet" type="text/css" href="css/page_compte.inc.css">
 </head>
 
 <?php 
@@ -77,6 +77,9 @@ if(isset( $_GET["type_list"])) {
         echo "<div id='laWishlist'>";
         while ($row = mysqli_fetch_assoc($result_wishlist)) {
             echo "<div class='unWish'>";
+            
+            
+            
             echo "<span>" . $row["titre"] ." ". "</span>";
             echo "<span>" . $row["resume"] ." ". "</span>";
             echo "<span>" . $row["annee_parution"] ." ". "</span>";
@@ -90,8 +93,8 @@ if(isset( $_GET["type_list"])) {
         echo "<div id='lesAvis'>";
         while ($row = mysqli_fetch_assoc($result_avis)) {
             echo "<div class='unAvis'>";
-            echo "<span>" . $row["note"] ." ". "</span>";
-            echo "<span>" . $row["commentaire"] ." ". "</span>";
+            echo "<img src='../images/avis/". $row["note"] ."stars.png' alt='rating' style='max-height: 20px;'>";
+            echo "<span class='commentaire'>" . $row["commentaire"] ." ". "</span>";
             echo "</div>";
           }
         echo "</div>";

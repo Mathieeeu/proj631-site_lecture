@@ -21,11 +21,15 @@
   }
 
 .unAvis {
+  display: flex;
   margin: 1px;
-  /*background-color: gray;*/
   border: 1px solid red;
 }
 
 #btn_avis_wishlist {
   display: flex;
+}
+
+.commentaire {
+  margin-left: 10px;
 }
