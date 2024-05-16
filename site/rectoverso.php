@@ -40,6 +40,8 @@
     
     <div id="contenu">
       <?php
+      $_SESSION["favcolor"] = "green";
+      $_SESSION["favanimal"] = "cat";
       if(!isset($_GET["page"]) ) { 
           $page="connexion";
       } else {
@@ -50,11 +52,12 @@
           include("page_".$page.".inc.php");
       }
       else{
-          echo "Page non trouvée";
+          include("page_introuvable.inc.php");
       }
       ?>
     </div>
     <div id="pied">
+        <hr> 
         <span> Polytech Annecy-Chambéry - PROJ631 - Mini projet n°3</span>
     </div>
 </body>
