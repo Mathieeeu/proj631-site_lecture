@@ -10,7 +10,6 @@
     biographie TEXT,
     photo VARCHAR,
 */
-echo $_SESSION["favcolor"];
 if (isset($_GET["search"])){
     $search = $_GET["search"];
     $sql = "SELECT * FROM PROJ631_auteur WHERE id_auteur = '".$search."'";
@@ -40,16 +39,17 @@ echo "<div id='photo_auteur'>";
 echo "<img src='../images/auteur/".$row["photo"].".jpg' alt='photo auteur'>";
 echo "</div>";
 echo "<p><b>".$row["nom_prenom_pseudo"]."</b></p>";
+
 // afficher la liste des oeuves de l'auteur
 echo "<div id='liste_oeuvres'>";
 echo "<b>Oeuvres de l'auteur :</b>";
-//$sql = "SELECT * FROM PROJ631_livre WHERE id_auteur = '".$search."'";
-//$result = mysqli_query($conn, $sql);
-$i = 10;
+$sql = "SELECT titre FROM PROJ631_livre WHERE id_auteur = '".$search."'";
+$result = mysqli_query($conn, $sql);
+$i = 0;
 echo "<ul>";
-while ($i > 0) {
-    echo "<li><a href=?page=livre&search=titre>Titre de l'oeuvre</a></li>";
-    $i--;
+while ($i<10 && $livre = mysqli_fetch_assoc($result)) {
+    echo "<li><a href=?page=livre&search=titre>".$livre["titre"]."</a></li>";
+    $i++;
 }
 echo "</ul>";
 echo "</div>";
