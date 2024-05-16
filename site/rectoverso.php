@@ -1,3 +1,12 @@
+<?php
+if (!isset($_SESSION["connecte"])){
+    session_start([
+        'cookie_lifetime' => 86400,
+    ]);
+    $_SESSION["connecte"] = false;
+    $_SESSION["identifiant"] = "";
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,24 +30,24 @@
 <body>
     <div id='container'>
     <div id='Barre_horizontale'>
+        
         <?php
-        if(1==1) {
-        echo "<img class=compte src = '../images/compte.png' />";
-        echo "<img class=home src = '../images/home.png'  />";
-        echo "<img class=deconnexion src = '../images/deconnexion.png'  />";
+        if(0==1) {
+        echo "<a href='?page=compte'><img class=compte src = '../images/compte.png'   /></a>";
+        echo "<a href='?page=accueil'><img class=home src = '../images/home.png' /></a>";
+        echo "<a href='?page=deconnexion'><img class=deconnexion src = '../images/deconnexion.png' /></a>";
         echo "<h1>Recto Verso</h1> ";
         }
         else {
-            echo "<img class=home src = '../images/home.png' />";
-            echo "<img class=login src = '../images/login.png' />";
-            echo "<img class=inscription src = '../images/inscription.png' />";
+            echo "<a href='?page=accueim'><img class=home src = '../images/home.png' /></a>";
+            echo "<a href='?page=connexion'><img class=login src = '../images/login.png'/></a>";
+            echo "<a href='?page=inscription'><img class=inscription src = '../images/inscription.png' /></a>";
             echo "<h1>Recto Verso</h1>" ;
         }
         ?>
         
+        
     </div>
-
-    
     <div id="contenu">
       <?php
       if(!isset($_GET["page"]) ) { 
