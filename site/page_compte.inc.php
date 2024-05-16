@@ -12,14 +12,14 @@
 </head>
 
 <?php 
-    $logs = file("../logs.txt");
-    $conn = @mysqli_connect("tp-epua:3308", substr($logs[0],0,-2), substr($logs[1],0,-2));
-    if (mysqli_connect_errno()){
-        echo "Failed to connect to MySQL: " . mysqli_connect_error();
-    } else {
-        mysqli_select_db($conn, substr($logs[0],0,-2));
-        mysqli_query($conn, "SET NAMES UTF8");
-    }
+//    $logs = file("../logs.txt");
+//    $conn = @mysqli_connect("tp-epua:3308", substr($logs[0],0,-2), substr($logs[1],0,-2));
+//    if (mysqli_connect_errno()){
+//        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+//    } else {
+//        mysqli_select_db($conn, substr($logs[0],0,-2));
+//        mysqli_query($conn, "SET NAMES UTF8");
+//    }
 ?>
 
 <?php
@@ -32,7 +32,7 @@
 $test_pseudo_pp = "bernard_tapin";
 $img_profil = "../images/".$test_pseudo_pp."_pp.jpg";
 
-
+$pseudo = $_SESSION['identifiant'];
 // Affichage image de profil et pseudo
 echo "
     <div> 
@@ -41,7 +41,7 @@ echo "
             <source media='(min-width: 465px)' srcset='{$img_profil}'>
             <img src='{$img_profil}' alt='Profil pic' style='width: auto;'>
         </picture>
-        <p>Bernard Tap-in</p>
+        <p> Pseudo : ". $pseudo ."</p>
     </div> 
 ";
 
@@ -49,14 +49,15 @@ echo "<div id='btn_avis_wishlist'>";
 // Bouton wishlist et avis
 echo "
         <form action='' method='get'>
+        <input type='hidden' name='page' value='compte'>
         <input type='hidden' name='type_list' value='wishlist'>
         <button type='submit'>WISHLIST</button>
         </form>
         <form action='' method='get'>
+        <input type='hidden' name='page' value='compte'>
         <input type='hidden' name='type_list' value='avis'>
         <button type='submit'>AVIS</button>
         </form>";
-
 echo "</div>";
 
 // Requetes pour la wishlist
