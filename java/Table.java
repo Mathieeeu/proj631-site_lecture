@@ -26,10 +26,11 @@ public class Table{
         return this.nomsColonnes;
     }
 
-    public void supprimerTable(){
+    public boolean supprimerTable(){
         this.nom=null;
         this.nbColonnes=0;
         this.nomsColonnes=new ArrayList<String>();
         this.action=true;
+        return this.action;
     }
 }
