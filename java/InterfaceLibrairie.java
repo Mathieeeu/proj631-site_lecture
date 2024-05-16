@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.awt.*;
 
 public class InterfaceLibrairie extends JFrame {
-    final static int HAUTEUR = 500;
+    final static int HAUTEUR = 550;
     final static int LARGEUR = 700;
     private ArrayList<Table> liste_tables;
     private Table table_selectionnee;
     private Donnees donnee_selectionnee;
+    private JPanel fond;
     private JPanel affichage;
+    private JPanel zone_ajout;
     private JComboBox<String> choix_table;
 
     public InterfaceLibrairie(ArrayList<Table> liste_tables) {
@@ -55,6 +57,58 @@ public class InterfaceLibrairie extends JFrame {
         Color couleur_boutons=Color.decode("#008585");
         actions.setBackground(fond_boutons);
         JButton ajouter=new JButton("Ajouter");
+        ajouter.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Ajout d'une donnée en cours dans la table " + table_selectionnee.getNom() + ".");
+                // création de la nouvelle donnée :
+                zone_ajout=new JPanel();
+                Color couleur_ajout=Color.decode("#74a892");
+                zone_ajout.setBackground(couleur_ajout);
+
+                // on récupère le nombre de colonnes de la table :
+                ArrayList<String> nomsColonnes=table_selectionnee.getNomsColonnes();
+                // on affiche autant de zone de texte qu'il y a de colonnes pour pouvoir rentrer la nouvelle donnée
+                for (String nomColonne : nomsColonnes) {
+                    JTextField zoneTexte=new JTextField(nomColonne);
+                    zone_ajout.add(zoneTexte);
+                }
+
+                JButton valider=new JButton("Valider");
+                valider.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        ArrayList<String> textes = new ArrayList<>();
+                        boolean texteVide=false;
+                        for (Component comp : zone_ajout.getComponents()) {
+                            if (comp instanceof JTextField) {
+                                JTextField textField=(JTextField) comp;
+                                String texte=textField.getText();
+                                if (texte.isEmpty()) {
+                                    texteVide=true;
+                                    System.out.println("Toutes les colonnes n'ont pas été remplies");
+                                    break; // Sortir de la boucle dès qu'un texte est vide
+                                }
+                                textes.add(texte);
+                            }
+                        }
+                        if (!texteVide) {
+                            System.out.println("Toutes les colonnes ont été remplies");
+                            Donnees nouvelle_donnee=new Donnees(table_selectionnee, textes);
+                            System.out.println("Nouvelle donnée : " + nouvelle_donnee.affichage_donnee());
+                            // on ajoute la donnée à la table selectionnée
+                            table_selectionnee.ajouterDonnees(nouvelle_donnee);
+                            suppression_zone_ajout();
+                        } 
+                    }
+                });
+                zone_ajout.add(valider);               
+                fond.add(zone_ajout);
+               
+                // mise à jour de l'affichage
+                mise_a_jour_interface();
+            }
+        });
         ajouter.setForeground(couleur_boutons);
         JButton modifier=new JButton("Modifier");
         modifier.setForeground(couleur_boutons);
@@ -128,6 +182,7 @@ public class InterfaceLibrairie extends JFrame {
 
     private void mise_a_jour_interface() {
         System.out.println("Mise à jour de l'interface en cours");
+        // partie affichage des données
         ArrayList<Donnees> liste_donnees = this.table_selectionnee.getDonnees();
         affichage.removeAll();
         for (Donnees donnee : liste_donnees) {
@@ -144,8 +199,18 @@ public class InterfaceLibrairie extends JFrame {
             });            
             affichage.add(bouton_donnee);
         }
-        // mise à jour de l'affichage
+        // mise à jour de l'affichage des données
         affichage.revalidate();
         affichage.repaint();
+        
+    }
+
+    private void suppression_zone_ajout(){
+        zone_ajout.removeAll();
+        Color couleur_fond=Color.decode("#fbf2c4");
+        zone_ajout.setBackground(couleur_fond);
+        zone_ajout.revalidate();
+        zone_ajout.repaint();
+
     }
 }
