@@ -31,7 +31,7 @@ if (!isset($_SESSION["connecte"])){
     <div id='Barre_horizontale'>
         
         <?php
-        if(0==1) {
+        if($_SESSION["connecte"]) {
         echo "<a href='?page=compte'><img class=compte src = '../images/compte.png'   /></a>";
         echo "<a href='?page=accueil'><img class=home src = '../images/home.png' /></a>";
         echo "<a href='?page=deconnexion'><img class=deconnexion src = '../images/deconnexion.png' /></a>";
