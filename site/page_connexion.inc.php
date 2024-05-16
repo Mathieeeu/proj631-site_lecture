@@ -1,6 +1,6 @@
 <head>
 
-<link rel="stylesheet" type="text/css" href="css/page_connexion.css">
+<link rel="stylesheet" type="text/css" href="css/page_connexion.inc.css">
 </head>
 
 <body>

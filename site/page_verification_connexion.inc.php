@@ -1,5 +1,5 @@
 <?php
-if( isset( $_POST["connexion_ok"])){
+if(isset( $_POST["connexion_ok"])){
   $sql="SELECT mot_de_passe FROM PROJ631_utilisateur WHERE pseudo LIKE '".$_POST["id"]."'";
   $result = mysqli_query($conn, $sql) or die("Requête invalide: ". mysqli_error( $conn )."\n".$sql);
   $val = mysqli_fetch_array($result);
@@ -9,7 +9,9 @@ if( isset( $_POST["connexion_ok"])){
     echo "<script>window.location.href='?page=inscription'</script>";
   }
   else if (password_verify($_POST['mdp'], $val['mot_de_passe'])){
-      echo "<script>window.location.href='?page=accueil'</script>";
+    $_SESSION["connecte"]=true; 
+    $_SESSION["identifiant"]=$_POST["id"];
+    echo "<script>window.location.href='?page=accueil'</script>";
   }
 
   else{
