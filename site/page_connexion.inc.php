@@ -4,3 +4,4 @@
   <input type='text' name='mdp' placeholder='Mot de passe' required></br>
   <button name='inscription_ok' type='submit' value="Popup">Connexion</button>
 </form>
+<button name='connexion_ok' type='submit' value="Popup">Inscription</button>
