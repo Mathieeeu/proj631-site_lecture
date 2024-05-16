@@ -34,6 +34,9 @@ $img_profil = "../images/".$test_pseudo_pp."_pp.jpg";
 
 $pseudo = $_SESSION['identifiant'];
 // Affichage image de profil et pseudo
+$sql = "SELECT a.note, a.commentaire FROM PROJ631_avis a JOIN PROJ631_utilisateur u ON u.id_utilisateur = a.id_utilisateur WHERE pseudo ='".$pseudo."'";
+$result_date = mysqli_query($conn, $sql) or die("Requête invalide: ". mysqli_error( $conn )."\n".$sql);
+
 echo "
     <div> 
         <picture>
@@ -111,7 +114,6 @@ if(isset( $_GET["type_list"])) {
                 echo "<img src='../images/avis/". $row["note"] ."stars.png' alt='rating' style='max-height: 20px;'>";
                 //echo "<span class='commentaire'>" . $row["commentaire"] ." ". "</span>";
                 echo "<span class='commentaire'>" . (strlen($row["commentaire"]) > 300 ? substr($row["commentaire"], 0, 300) . "<button class='lire-la-suite'>Lire la suite</button><span class='suite-cachee'>" . substr($row["commentaire"], 300) . "</span>" : $row["commentaire"]) . "</span>";
-
                 echo "</div>";
             }
             echo "</div>";
