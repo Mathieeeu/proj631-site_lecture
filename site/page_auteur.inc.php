@@ -10,11 +10,12 @@
     biographie TEXT,
     photo VARCHAR,
 */
-echo $_SESSION["favcolor"];
+
 if (isset($_GET["search"])){
     $search = $_GET["search"];
     $sql = "SELECT * FROM PROJ631_auteur WHERE id_auteur = '".$search."'";
     $result = mysqli_query($conn, $sql);
+    
 }
 else {
     echo "<div id='error-message'>";
