@@ -1,5 +1,5 @@
 <head>
-<link rel="stylesheet" type="text/css" href="css/page_inscription.css">
+<link rel="stylesheet" type="text/css" href="css/page_inscription.inc.css">
 </head>
 
 <body>
