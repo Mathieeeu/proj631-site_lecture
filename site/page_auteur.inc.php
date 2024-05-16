@@ -10,7 +10,7 @@
     biographie TEXT,
     photo VARCHAR,
 */
-
+echo $_SESSION["favcolor"];
 if (isset($_GET["search"])){
     $search = $_GET["search"];
     $sql = "SELECT * FROM PROJ631_auteur WHERE id_auteur = '".$search."'";
@@ -37,7 +37,7 @@ $row = mysqli_fetch_assoc($result);
 // Photo de l'auteur et livres à gauche
 echo "<div id='gauche'>";
 echo "<div id='photo_auteur'>";
-echo "<img src='../images/".$row["photo"].".jpg' alt='photo auteur'>";
+echo "<img src='../images/auteur/".$row["photo"].".jpg' alt='photo auteur'>";
 echo "</div>";
 echo "<p><b>".$row["nom_prenom_pseudo"]."</b></p>";
 // afficher la liste des oeuves de l'auteur
