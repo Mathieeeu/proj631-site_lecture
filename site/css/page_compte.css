@@ -1,0 +1,31 @@
+#laWishlist {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: space-around;
+  }
+
+.unWish {
+  margin: 1px;
+  /*background-color: gray;*/
+  border: 1px solid rgb(4, 0, 255);
+}
+
+#lesAvis {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: space-around;
+  }
+
+.unAvis {
+  margin: 1px;
+  /*background-color: gray;*/
+  border: 1px solid red;
+}
+
+#btn_avis_wishlist {
+  display: flex;
+}
