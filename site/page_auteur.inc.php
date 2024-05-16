@@ -56,10 +56,13 @@ echo "</div>";
 echo "</div>";
 
 // Informations de l'auteur à droite
+setlocale(LC_TIME, 'fr_FR.utf8','fra');
+$date_naissance = strftime('%d %B %Y', strtotime($row["date_naissance"]));
+$date_deces = strftime('%d %B %Y', strtotime($row["date_deces"]));
 echo "<div id='droite'>";
 echo "<h2>".$row["nom_prenom_pseudo"]."</h2>";
-echo "<p><b>Date de naissance:</b> ".$row["date_naissance"]."</p>";
-echo "<p><b>Date de décès:</b> ".$row["date_deces"]."</p>";
+echo "<p><b>Date de naissance:</b> ".$date_naissance."</p>";
+echo "<p><b>Date de décès:</b> ".$date_deces."</p>";
 echo "<div id='bio'><p><b>Biographie:<br></b> ".$row["biographie"]."</p></div>";
 echo "</div></div>";
 ?>
