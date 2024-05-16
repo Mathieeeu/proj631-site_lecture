@@ -7,6 +7,7 @@ if (!isset($_SESSION["connecte"])){
     $_SESSION["identifiant"] = "";
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,18 +29,17 @@ if (!isset($_SESSION["connecte"])){
 ?>
 
 <body>
-    <div id='container'>
     <div id='Barre_horizontale'>
         
         <?php
-        if(0==1) {
+        if($_SESSION["connecte"]) {
         echo "<a href='?page=compte'><img class=compte src = '../images/compte.png'   /></a>";
         echo "<a href='?page=accueil'><img class=home src = '../images/home.png' /></a>";
         echo "<a href='?page=deconnexion'><img class=deconnexion src = '../images/deconnexion.png' /></a>";
         echo "<h1>Recto Verso</h1> ";
         }
         else {
-            echo "<a href='?page=accueim'><img class=home src = '../images/home.png' /></a>";
+            echo "<a href='?page=accueil'><img class=home src = '../images/home.png' /></a>";
             echo "<a href='?page=connexion'><img class=login src = '../images/login.png'/></a>";
             echo "<a href='?page=inscription'><img class=inscription src = '../images/inscription.png' /></a>";
             echo "<h1>Recto Verso</h1>" ;
@@ -68,5 +68,4 @@ if (!isset($_SESSION["connecte"])){
         <hr> 
         <span> Polytech Annecy-Chambéry - PROJ631 - Mini projet n°3</span>
     </div>
-</div>
 </body>

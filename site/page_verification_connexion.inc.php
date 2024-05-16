@@ -9,6 +9,8 @@ if( isset( $_POST["connexion_ok"])){
     echo "<script>window.location.href='?page=inscription'</script>";
   }
   else if (password_verify($_POST['mdp'], $val['mot_de_passe'])){
+      $_SESSION["connecte"]=true;
+      $_SESSION["identifiant"]=$_POST["id"];
       echo "<script>window.location.href='?page=accueil'</script>";
   }
 
