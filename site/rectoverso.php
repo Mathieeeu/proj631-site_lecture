@@ -1,9 +1,3 @@
-<?php
-    if (!isset($_SESSION["connecte"])){
-        session_start();
-        $_SESSION["connecte"] = false;
-    }
-?>
 <!DOCTYPE html>
 <html>
 <head>
