@@ -10,6 +10,7 @@ public class InterfaceLibrairie extends JFrame {
     final static int LARGEUR = 700;
     private ArrayList<Table> liste_tables;
     private Table table_selectionnee;
+    private Donnees donnee_selectionnee;
     private JPanel affichage;
     private JComboBox<String> choix_table;
 
@@ -58,6 +59,16 @@ public class InterfaceLibrairie extends JFrame {
         JButton modifier=new JButton("Modifier");
         modifier.setForeground(couleur_boutons);
         JButton supprimer=new JButton("Supprimer");
+        supprimer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Supprimer la donnée sélectionnée
+                System.out.println("Suppression de la donnée " + donnee_selectionnee.affichage_donnee() + " en cours");
+                table_selectionnee.supprimerDonnee(donnee_selectionnee);
+                // mise à jour de l'affichage
+                mise_a_jour_interface();
+            }
+        });
         supprimer.setForeground(couleur_boutons);
         actions.add(ajouter);
         actions.add(modifier);
@@ -79,6 +90,14 @@ public class InterfaceLibrairie extends JFrame {
             JButton bouton_donnee=new JButton("<html>" + donnee.affichage_interface() + "</html>");
             bouton_donnee.setOpaque(false);
             bouton_donnee.setContentAreaFilled(false);
+            bouton_donnee.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // On récupère la donnée sélectionnee
+                    donnee_selectionnee=donnee;
+                    System.out.println("Donnée sélectionnée : " + donnee_selectionnee.affichage_donnee());
+                }
+            });
             affichage.add(bouton_donnee);
 
         }
@@ -118,12 +137,11 @@ public class InterfaceLibrairie extends JFrame {
             bouton_donnee.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    // Supprimer la donnée sélectionnée
-                    //table_selectionnee.supprimerDonnee(donnee);
-                    // Mettre à jour l'interface
-                    mise_a_jour_interface();
+                    // On récupère la donnée sélectionnee
+                    donnee_selectionnee=donnee;
+                    System.out.println("Donnée sélectionnée : " + donnee_selectionnee.affichage_donnee());
                 }
-            });
+            });            
             affichage.add(bouton_donnee);
         }
         // mise à jour de l'affichage

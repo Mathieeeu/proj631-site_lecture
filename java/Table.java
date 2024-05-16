@@ -59,12 +59,9 @@ public class Table{
         }   
     }
 
-    public void supprimerDonnee(String valeur, int idxColonne){
+    public void supprimerDonnee(Donnees donnee){
         //Lorsqu'une donnée est supprimer elle l'est entièrement : pas seulement un élément
-        for (Donnees info : this.donnees){
-            if(info.getContenu().get(idxColonne)==valeur){
-                info.supprimerDonnee();
-            }
-        }
+        this.donnees.remove(donnee);
+        donnee.supprimerDonnee();
     }
 }
