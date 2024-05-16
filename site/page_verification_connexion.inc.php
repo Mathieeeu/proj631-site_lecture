@@ -1,22 +1,17 @@
 <?php
-if( isset( $_POST["inscription_ok"])){
-  $sql="SELECT mot_de_passe FROM INFO_utilisateur WHERE pseudo LIKE '".$_POST["id"]."'";
+if( isset( $_POST["connexion_ok"])){
+  $sql="SELECT mot_de_passe FROM PROJ631_utilisateur WHERE pseudo LIKE '".$_POST["id"]."'";
   $result = mysqli_query($conn, $sql) or die("Requête invalide: ". mysqli_error( $conn )."\n".$sql);
   $val = mysqli_fetch_array($result);
-  if ($val['mot_de_passe'] == $_POST['mdp']){
+
+  if (mysqli_num_rows($result) == 0){
+    echo "<script>alert('Erreur - Utilisateur inconnu !')</script>";
+    echo "<script>window.location.href='?page=inscription'</script>";
+  }
+  else if (password_verify($_POST['mdp'], $val['mot_de_passe'])){
       echo "<script>window.location.href='?page=accueil'</script>";
   }
-  else if ($val['mot_de_passe'] != $_POST['mdp']){
-      $id = $_POST['id'];
-      echo "<div class='containter'><h1>Initialisation du mot de passe</h1>";
-      echo "<form action='?page=accueil' method='post'>";
-      echo "<p>(Utilisateur : ".$id.")</p>";
-      echo "<input type='text' name='mdp1' placeholder='Mot de passe' required><br>";
-      echo "<input type='text' name='mdp2' placeholder='Confirmer mot de passe' required><br>";
-      echo "<input type='hidden' name='id' value='".$id."'>";
-      echo "<input type='submit' value='Valider'>";
-      echo "</div>";
-  }
+
   else{
     echo "<script>alert('Erreur - Identifiants incorrects !')</script>";
     echo "<script>window.location.href='?page=connexion'</script>";
