@@ -4,6 +4,7 @@
     height: 80px;
     width: 100%;
     position: fixed;
+    top:0;
 }
 
 #Contenu {
@@ -59,3 +60,16 @@
     top: 0;
 }
 
+#pied {
+    height: 50px;
+    margin: 30px 0;
+    background-color: #fbf2c4;
+    color: #E5C185;
+    border-top: 1px #008585;
+    text-align: center;
+    line-height: 60px;
+}
+
+#container{
+    margin-top: 90px;
+}

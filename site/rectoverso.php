@@ -4,7 +4,7 @@
     <title>Recto Verso</title>
     <html lang="fr">
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="css/style_accueil.css">
+    <link rel="stylesheet" type="text/css" href="css/rectoverso.css">
 </head>
 
 <?php 
@@ -19,10 +19,11 @@
 ?>
 
 <body>
+    <div id='container'>
     <div id='Barre_horizontale'>
         <?php
         if(1==1) {
-        echo "<img class=compte src = '../images/compte.png'  />";
+        echo "<img class=compte src = '../images/compte.png' />";
         echo "<img class=home src = '../images/home.png'  />";
         echo "<img class=deconnexion src = '../images/deconnexion.png'  />";
         echo "<h1>Recto Verso</h1> ";
@@ -41,7 +42,7 @@
     <div id="contenu">
       <?php
       if(!isset($_GET["page"]) ) { 
-          $page="connexion";
+          $page="accueil";
       } else {
           $page=$_GET["page"];
       }
@@ -58,4 +59,5 @@
         <hr> 
         <span> Polytech Annecy-Chambéry - PROJ631 - Mini projet n°3</span>
     </div>
+</div>
 </body>
