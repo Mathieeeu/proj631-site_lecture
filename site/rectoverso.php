@@ -1,10 +1,17 @@
 <?php
-if (!isset($_SESSION["connecte"])){
+if (!isset($_SESSION)){
     session_start([
         'cookie_lifetime' => 86400,
     ]);
-    $_SESSION["connecte"] = false;
-    $_SESSION["identifiant"] = "";
+
+    if (!isset($_SESSION["connecte"])){
+        $_SESSION["connecte"] = false;
+        $_SESSION["identifiant"] = "";
+    }
+    echo "BONJOUR".$_SESSION["connecte"].$_SESSION["identifiant"];
+}
+else {
+    echo "BOINJOUR";
 }
 ?>
 
@@ -30,7 +37,7 @@ if (!isset($_SESSION["connecte"])){
 
 <body>
     <div id='Barre_horizontale'>
-        
+
         <?php
         if($_SESSION["connecte"]) {
         echo "<a href='?page=compte'><img class=compte src = '../images/compte.png'   /></a>";
@@ -45,8 +52,7 @@ if (!isset($_SESSION["connecte"])){
             echo "<h1>Recto Verso</h1>" ;
         }
         ?>
-        
-        
+
     </div>
     <div id="contenu">
       <?php
@@ -55,7 +61,7 @@ if (!isset($_SESSION["connecte"])){
       } else {
           $page=$_GET["page"];
       }
-  
+
       if (file_exists("page_".$page.".inc.php")){
           include("page_".$page.".inc.php");
       }
@@ -63,9 +69,19 @@ if (!isset($_SESSION["connecte"])){
           include("page_introuvable.inc.php");
       }
       ?>
+
     </div>
     <div id="pied">
         <hr> 
-        <span> Polytech Annecy-Chambéry - PROJ631 - Mini projet n°3</span>
+        <span>
+        <?php
+        if($_SESSION["connecte"]){
+            echo "Connecté en tant que : ".$_SESSION["identifiant"]." - ";
+        }
+        else {
+            echo "Non connecté</span> - ";
+        }
+        ?>
+        Polytech Annecy-Chambéry - PROJ631 - Mini projet n°3</span>
     </div>
 </body>

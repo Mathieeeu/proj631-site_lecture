@@ -3,7 +3,7 @@
     background-color: #008585;
     height: 80px;
     width: 100%;
-    /* position: fixed; */
+    position: fixed;
     top:0;
 }
 
@@ -70,5 +70,3 @@
     text-align: center;
     line-height: 60px;
 }
-
-
