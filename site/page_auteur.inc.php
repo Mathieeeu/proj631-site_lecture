@@ -44,12 +44,12 @@ echo "<p><b>".$row["nom_prenom_pseudo"]."</b></p>";
 // afficher la liste des oeuves de l'auteur
 echo "<div id='liste_oeuvres'>";
 echo "<b>Oeuvres de l'auteur :</b>";
-$sql = "SELECT titre FROM PROJ631_livre WHERE id_auteur = '".$search."'";
+$sql = "SELECT id_livre,titre FROM PROJ631_livre WHERE id_auteur = '".$search."'";
 $result = mysqli_query($conn, $sql);
 $i = 0;
 echo "<ul>";
 while ($i<10 && $livre = mysqli_fetch_assoc($result)) {
-    echo "<li><a href=?page=livre&search=".$livre["id_livre"].">Titre de l'oeuvre</a></li>";
+    echo "<li><a href=?page=livre&search=".$livre["id_livre"].">".$livre["titre"]."</a></li>";
     $i++;
 }
 echo "</ul>";
