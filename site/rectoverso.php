@@ -40,8 +40,6 @@
     
     <div id="contenu">
       <?php
-      $_SESSION["favcolor"] = "green";
-      $_SESSION["favanimal"] = "cat";
       if(!isset($_GET["page"]) ) { 
           $page="connexion";
       } else {
