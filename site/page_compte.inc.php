@@ -11,17 +11,6 @@
   </script>
 </head>
 
-<?php 
-//    $logs = file("../logs.txt");
-//    $conn = @mysqli_connect("tp-epua:3308", substr($logs[0],0,-2), substr($logs[1],0,-2));
-//    if (mysqli_connect_errno()){
-//        echo "Failed to connect to MySQL: " . mysqli_connect_error();
-//    } else {
-//        mysqli_select_db($conn, substr($logs[0],0,-2));
-//        mysqli_query($conn, "SET NAMES UTF8");
-//    }
-?>
-
 <?php
 
 // $_SESSION["pseudo"]
@@ -33,9 +22,11 @@ $test_pseudo_pp = "bernard_tapin";
 $img_profil = "../images/".$test_pseudo_pp."_pp.jpg";
 
 $pseudo = $_SESSION['identifiant'];
-// Affichage image de profil et pseudo
-$sql = "SELECT a.note, a.commentaire FROM PROJ631_avis a JOIN PROJ631_utilisateur u ON u.id_utilisateur = a.id_utilisateur WHERE pseudo ='".$pseudo."'";
+
+// Affichage image de profil, pseudo et date d'inscription (et id_utilisateur)
+$sql = "SELECT id_utilisateur, date_inscription FROM PROJ631_utilisateur WHERE pseudo = '".$pseudo."'";
 $result_date = mysqli_query($conn, $sql) or die("Requête invalide: ". mysqli_error( $conn )."\n".$sql);
+$val_date_user = mysqli_fetch_assoc($result_date);
 
 echo "
     <div> 
@@ -45,8 +36,8 @@ echo "
             <img src='{$img_profil}' alt='Profil pic' style='width: auto;'>
         </picture>
         <p> Pseudo : ". $pseudo ."</p>
-    </div> 
-";
+        <p> Date d'inscription : ". $val_date_user["date_inscription"] ."</p>
+    </div>";
 
 echo "<div id='btn_avis_wishlist'>";
 // Bouton wishlist et avis
@@ -70,13 +61,16 @@ echo "</div>";
 //        WHERE id_utilisateur = ".$_SESSION['identifiant'].";"
 $sql = "SELECT l.titre, l.resume, l.annee_parution, l.genre, l.image FROM PROJ631_livre as l
         JOIN PROJ631_wishlist as w ON l.id_livre = w.id_livre
-        WHERE id_utilisateur = 1";
+        WHERE id_utilisateur = ".$val_date_user["id_utilisateur"].";";
+
+
+
 
 $result_wishlist = mysqli_query($conn, $sql) or die("Requête invalide: ". mysqli_error( $conn )."\n".$sql);
 //$val_wishlist = mysqli_fetch_assoc($result_wishlist);
 
 // Requetes pour les avis
-$sql = "SELECT note, commentaire FROM PROJ631_avis WHERE id_utilisateur = 1";
+$sql = "SELECT a.note, a.commentaire FROM PROJ631_avis a JOIN PROJ631_utilisateur u ON u.id_utilisateur = a.id_utilisateur WHERE pseudo ='".$pseudo."'";
 $result_avis = mysqli_query($conn, $sql) or die("Requête invalide: ". mysqli_error( $conn )."\n".$sql);
 //$val_avis = mysqli_fetch_assoc($result_avis);
 
