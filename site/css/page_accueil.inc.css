@@ -1,0 +1,27 @@
+.livre, .auteur {
+    background-color: #e5c185;
+    display: inline-block;
+    text-align: center;
+    width: 30vh;
+    height: 15vw;
+    margin: 2vw;
+    border: 2px solid #c7522a;
+    border-radius: 30px;
+    vertical-align: middle;
+      
+}
+
+.livre:hover,.livre:focus, .auteur:hover, .auteur:focus{
+    box-shadow: 0 0.6em 0.6em -0.6em #c7522a;
+    transform: translateY(-0.25em);
+}
+
+.search {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.accueil {
+    background-color: #fbf2c4;
+    border-radius: 3vw;
+}
