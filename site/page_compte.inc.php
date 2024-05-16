@@ -82,7 +82,11 @@ $result_wishlist = mysqli_query($conn, $sql) or die("Requête invalide: ". mysql
 //$val_wishlist = mysqli_fetch_assoc($result_wishlist);
 
 // Requetes pour les avis
-$sql = "SELECT a.note, a.commentaire FROM PROJ631_avis a JOIN PROJ631_utilisateur u ON u.id_utilisateur = a.id_utilisateur WHERE pseudo ='".$pseudo."'";
+$sql = "SELECT a.note, a.commentaire, l.titre, l.annee_parution, au.nom_prenom_pseudo FROM PROJ631_avis a 
+JOIN PROJ631_utilisateur u ON u.id_utilisateur = a.id_utilisateur 
+JOIN PROJ631_livre l ON l.id_livre = a.id_livre
+JOIN PROJ631_auteur au ON au.id_auteur = l.id_auteur
+WHERE pseudo ='".$pseudo."'";
 $result_avis = mysqli_query($conn, $sql) or die("Requête invalide: ". mysqli_error( $conn )."\n".$sql);
 //$val_avis = mysqli_fetch_assoc($result_avis);
 
@@ -115,9 +119,15 @@ if(isset( $_GET["type_list"])) {
             echo "<div id='lesAvis'>";
             while ($row = mysqli_fetch_assoc($result_avis)) {
                 echo "<div class='unAvis'>";
-                echo "<img src='../images/avis/". $row["note"] ."stars.png' alt='rating' style='max-height: 20px;'>";
-                //echo "<span class='commentaire'>" . $row["commentaire"] ." ". "</span>";
-                echo "<span class='commentaire'>" . (strlen($row["commentaire"]) > 300 ? substr($row["commentaire"], 0, 300) . "<button class='lire-la-suite'>Lire la suite</button><span class='suite-cachee'>" . substr($row["commentaire"], 300) . "</span>" : $row["commentaire"]) . "</span>";
+                    echo "<div class='infoAvis'>";
+                        echo "<div> Titre : " . $row["titre"] ." ". "</div>";
+                        echo "<div> Année de parution : " . $row["annee_parution"] ." ". "</div>";
+                        echo "<div> Auteur : " . $row["nom_prenom_pseudo"] ." ". "</div>";
+                        echo "<img src='../images/avis/". $row["note"] ."stars.png' alt='rating' style='max-height: 20px;'>";
+
+                    echo "</div>";
+                    //echo "<span class='commentaire'>" . $row["commentaire"] ." ". "</span>";
+                    echo "<span class='commentaire'>" . (strlen($row["commentaire"]) > 300 ? substr($row["commentaire"], 0, 300) . "<button class='lire-la-suite'>Lire la suite</button><span class='suite-cachee'>" . substr($row["commentaire"], 300) . "</span>" : $row["commentaire"]) . "</span>";
                 echo "</div>";
             }
             echo "</div>";
