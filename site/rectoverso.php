@@ -1,3 +1,11 @@
+<?php
+if (!isset($_SESSION["connecte"])){
+    session_start([
+        'cookie_lifetime' => 86400,
+    ]);
+    $_SESSION["connecte"] = false;
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,8 +46,6 @@
         
         
     </div>
-
-    
     <div id="contenu">
       <?php
       if(!isset($_GET["page"]) ) { 
