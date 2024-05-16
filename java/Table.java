@@ -13,6 +13,7 @@ public class Table{
         this.nbColonnes=nbColonnes;
         this.nomsColonnes=nomsColonnes;
         this.action=false;
+        donnees=new ArrayList<Donnees>();
     }
 
     public String getNom(){
@@ -35,8 +36,21 @@ public class Table{
         return this.action;
     }
 
-    public void modifierDonnee (ArrayList<Integer> valeurs, String nomColonne){
+    public void ajouterDonnees(Donnees info){
+        this.donnees.add(info);
+    }
 
+    public void modifierDonnee (String valeur_initial, String valeur_final, int idxColonne){
+        if(this.donnees.size()==0){
+            System.err.println("Aucune information de rentré dans le tableau");
+        }else{
+            for (Donnees info : this.donnees){
+                if(info.getContenu().get(idxColonne)==valeur_initial){
+                    info.getContenu().set(idxColonne, valeur_final);
+                }
+            }
+
+        }   
     }
 
     public void supprimerDonnee(ArrayList<Integer> valeurs){
