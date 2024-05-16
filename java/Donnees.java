@@ -10,11 +10,20 @@ public class Donnees{
         this.contenu=contenu;
     }
 
+    public ArrayList<String> getContenu(){
+        return this.contenu;
+    }
+
     public void afficherDonnee(){
         String res = "(";
         for (String content : this.contenu){
             res+=content+" ; ";
         }
         System.out.print(res+")");
+    }
+
+    public void supprimerDonnee(){
+        this.contenu=new ArrayList<>();
+        this.tb=null;
     }
 }
