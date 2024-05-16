@@ -1,0 +1,61 @@
+/*test*/
+#Barre_horizontale {
+    background-color: #008585;
+    height: 80px;
+    width: 100%;
+    position: fixed;
+}
+
+#Contenu {
+    background-color: #fbf2c4;
+}
+
+.compte {
+    max-height: 70px;
+    margin-right: 100px;
+    position: absolute;
+    right: 0; 
+    margin-top: 5px;
+    top: 0;
+}
+
+.home {
+    max-height: 70px;
+    margin-right: 300px;
+    position: absolute;
+    right: 0; 
+    margin-top: 5px;
+    top: 0;
+
+}
+
+.deconnexion {
+    max-height: 70px;
+    margin-right: 20px;
+    position: absolute;
+    right: 0; 
+    margin-top: 5px;
+    top: 0;
+
+}
+
+.inscription {
+    max-height: 70px;
+    margin-right: 20px;
+    position: absolute;
+    right: 0; 
+    margin-top: 10px;
+    top: 0;
+
+}
+
+.login {
+    max-height: 70px;
+    margin-right: 150px;
+    position: absolute;
+    right: 0; 
+    margin-top: 15px;
+    max-width: 150px;
+    top: 0;
+}
+

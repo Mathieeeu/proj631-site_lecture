@@ -4,7 +4,7 @@
     <title>Recto Verso</title>
     <html lang="fr">
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style_accueil.css">
 </head>
 
 <?php 
@@ -20,11 +20,21 @@
 
 <body>
     <div id='Barre_horizontale'>
+        <?php
+        if(1==1) {
+        echo "<img class=compte src = '../images/compte.png'  />";
+        echo "<img class=home src = '../images/home.png'  />";
+        echo "<img class=deconnexion src = '../images/deconnexion.png'  />";
+        echo "<h1>Recto Verso</h1> ";
+        }
+        else {
+            echo "<img class=home src = '../images/home.png' />";
+            echo "<img class=login src = '../images/login.png' />";
+            echo "<img class=inscription src = '../images/inscription.png' />";
+            echo "<h1>Recto Verso</h1>" ;
+        }
+        ?>
         
-    </div>
-
-    <div id="entete">
-        <h1>Recto Verso</h1>
     </div>
 
     
