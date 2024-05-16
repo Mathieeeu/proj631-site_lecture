@@ -1,0 +1,48 @@
+#principal{
+    justify-content: center;   
+    font-family:'Verdana';
+    height: 75vh;
+    width: 49vw;
+   
+}
+
+#requete{
+    background-color: #FBF2C4;
+    height: 55vh;
+    width: 49vw;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    
+    flex-direction: column;
+    border-radius: 15px; 
+    margin-left: 25vw;
+    margin-top: 12vh;
+
+}
+
+
+#textprincipal{
+    color:#C7522A;
+    margin-left: 1vw;
+    
+}
+
+.champRecherche{
+    margin-top: 2vh;
+    width: 40vw;
+    border-radius:7px ;
+    border-color: #C7522A;
+
+}
+
+.bouton{
+    background-color: #C7522A;
+    width: 15vw;
+    color:white;
+    border-radius:7px;
+    font-family:inherit;
+    font-size:small;
+    height: 3vh;
+    margin-top: 2vh;    
+}
