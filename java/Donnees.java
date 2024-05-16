@@ -1,21 +1,20 @@
 import java.util.ArrayList;
 
 public class Donnees{
-    private Table tb;
+    //Cette classe représente l'ensemble des données disponibles dans une table
+    private Table tb; //La table dans laquelle se trouve les données que nous avons
+    private ArrayList<String> contenu; // Element d'une ligne dans notre table
 
-    public Donnees(Table t){
+    public Donnees(Table t, ArrayList<String> contenu){
         this.tb=t;
-    }
-
-    public void modifierDonnee (ArrayList<Integer> valeurs, String nomColonne ){
-
-    }
-
-    public void supprimerDonnee(ArrayList<Integer> valeurs){
-
+        this.contenu=contenu;
     }
 
     public void afficherDonnee(){
-        
+        String res = "(";
+        for (String content : this.contenu){
+            res+=content+" ; ";
+        }
+        System.out.print(res+")");
     }
 }
