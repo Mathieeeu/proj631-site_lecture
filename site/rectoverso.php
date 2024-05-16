@@ -1,3 +1,9 @@
+<?php
+    if (!isset($_SESSION["connecte"])){
+        session_start();
+        $_SESSION["connecte"] = false;
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +30,8 @@
     </div>
     <div id="contenu">
       <?php
+      $_SESSION["favcolor"] = "green";
+      $_SESSION["favanimal"] = "cat";
       if(!isset($_GET["page"]) ) { 
           $page="connexion";
       } else {
@@ -34,7 +42,7 @@
           include("page_".$page.".inc.php");
       }
       else{
-          echo "Page non trouvée";
+          include("page_introuvable.inc.php");
       }
       ?>
     </div>
