@@ -18,7 +18,10 @@
                     echo "<script>window.location.href='?page=inscription'</script>";
                 }
                 else{
+                    $_SESSION["connecte"]=true;
+                    $_SESSION["identifiant"]=$_POST["id"];
                     echo "<script>alert('Inscription réussie ! :)')</script>";
+                    echo "<script>window.location.href='?page=accueil'</script>";
                 }
             }
             else{
@@ -27,5 +30,4 @@
              }
         }
     }
-    echo"azerty";
 ?>
