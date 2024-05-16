@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="css/page_accueil.inc.css"/>
-
+<div class='accueil'>
 <?php
-    echo "<div>";
+    
     echo "<form action='' method='get' class='search'>";
     if (isset($_GET["q"])) {
         echo "<input type='text' name='q' placeholder='Rechercher...' value = ". $_GET["q"] . ">  </input>";
@@ -30,8 +30,11 @@
         $result_livre = mysqli_query($conn, $requete_livre);
         // Afficher les résultats de la recherche
         while ($row = mysqli_fetch_assoc($result_livre)) {
+            $sql = "SELECT id_livre FROM PROJ631_livre WHERE id_livre = ".$row['id_livre']."";
+            $result= mysqli_query($conn, $sql);
+            $val = mysqli_fetch_assoc($result);
             echo '<diV class=livre>';
-            echo '<p>' . $row['titre'] . '</p>';
+            echo "<a href ='?page=livre&search=".$val['id_livre']."'> ". $row['titre']. "</a>";
             echo '</div>';
         }
         //Recherche les auteurs
@@ -39,9 +42,13 @@
         $result_auteur = mysqli_query($conn, $requete_auteur);
         // Afficher les résultats de la recherche
         while ($row2 = mysqli_fetch_assoc($result_auteur)) {
+            $sql_auteur = "SELECT id_auteur FROM PROJ631_auteur WHERE id_auteur = ".$row2['id_auteur']."";
+            $result_auteur_id= mysqli_query($conn, $sql_auteur);
+            $val_auteur_id = mysqli_fetch_assoc($result_auteur_id);
             echo '<diV class=auteur>';
-            echo '<p>' . $row2['nom_prenom_pseudo'] . '</p>';
+            echo "<a href ='?page=auteur&search=".$val_auteur_id['id_auteur']."'> ". $row2['nom_prenom_pseudo']. "</a>";
             echo '</div>';
+            
         }
     }
 ?>
