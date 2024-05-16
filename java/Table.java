@@ -37,10 +37,12 @@ public class Table{
     }
 
     public void ajouterDonnees(Donnees info){
+        //On part du principe que les données seront ajoutés une fois la table créée
         this.donnees.add(info);
     }
 
     public void modifierDonnee (String valeur_initial, String valeur_final, int idxColonne){
+        //Une donnée modifié revient à changer en une valeur_final la valeur initial : on vérifie donc toutes nos données
         if(this.donnees.size()==0){
             System.err.println("Aucune information de rentré dans le tableau");
         }else{
@@ -53,7 +55,12 @@ public class Table{
         }   
     }
 
-    public void supprimerDonnee(ArrayList<Integer> valeurs){
-        
+    public void supprimerDonnee(String valeur, int idxColonne){
+        //Lorsqu'une donnée est supprimer elle l'est entièrement : pas seulement un élément
+        for (Donnees info : this.donnees){
+            if(info.getContenu().get(idxColonne)==valeur){
+                info.supprimerDonnee();
+            }
+        }
     }
 }

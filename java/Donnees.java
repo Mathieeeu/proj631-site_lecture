@@ -21,4 +21,9 @@ public class Donnees{
         }
         System.out.print(res+")");
     }
+
+    public void supprimerDonnee(){
+        this.contenu=new ArrayList<>();
+        this.tb=null;
+    }
 }
