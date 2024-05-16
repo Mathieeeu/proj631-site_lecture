@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class DonneesAdmin extends Donnees{
     public static int largeur;
     public static int longueur;
@@ -10,7 +12,7 @@ public class DonneesAdmin extends Donnees{
 
     }
 
-    public void AjouterValeurs (ArrayList <String> contenu){
+    public void AjouterValeurs (ArrayList<String> contenu){
 
     }
 }
