@@ -49,7 +49,7 @@ $result = mysqli_query($conn, $sql);
 $i = 0;
 echo "<ul>";
 while ($i<10 && $livre = mysqli_fetch_assoc($result)) {
-    echo "<li><a href=?page=livre&search=titre>".$livre["titre"]."</a></li>";
+    echo "<img src='../images/auteur/".$row["photo"].".jpg' alt='photo auteur'>";
     $i++;
 }
 echo "</ul>";
