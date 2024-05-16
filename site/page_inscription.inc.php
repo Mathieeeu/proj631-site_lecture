@@ -13,6 +13,7 @@
 
     <div class="container">
     <?php
+    //Formulaire inscription
         echo "<form action='?page=verification_inscription' method='post'>";
         echo "<input class= champRecherche type='text' name='id' placeholder='Identifiant' required><br/>";
         echo "<input class= champRecherche type='password' name='mdp1' placeholder='Mot de passe' required><br>";

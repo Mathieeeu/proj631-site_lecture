@@ -11,7 +11,7 @@
     <div> 
       <h2 id= textprincipal>Connexion</h2>
     </div> 
-  
+<!-- Formulaire de connexion -->  
   <div class="container">
   <form method='post' action='?page=verification_connexion'>
   <input class= champRecherche type='text' name='id' placeholder='Identifiant' required><br/>
@@ -19,6 +19,7 @@
   <button  class="bouton" name='connexion_ok' type='submit' value="Popup">Connexion</button>
   </form>
   <button class="bouton">
+<!-- Bouton pour renvoie à page connexion-->
     <a href="?page=inscription" class="bouton">Inscription</a>
   </button>
   </div>

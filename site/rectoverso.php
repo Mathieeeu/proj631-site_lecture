@@ -1,3 +1,4 @@
+/*Gestion de la session*/
 <?php
 if (!isset($_SESSION)){
     session_start([
@@ -21,6 +22,7 @@ if (!isset($_SESSION)){
 </head>
 
 <?php 
+    /*Connection à la bdd*/
     $logs = file("../logs.txt");
     $conn = @mysqli_connect("tp-epua:3308", substr($logs[0],0,-2), substr($logs[1],0,-2));
     if (mysqli_connect_errno()){
@@ -35,13 +37,14 @@ if (!isset($_SESSION)){
     <div id='Barre_horizontale'>
 
         <?php
+        /*Si une personne connectée*/
         if($_SESSION["connecte"]) {
         echo "<a href='?page=compte'><img class=compte src = '../images/compte.png'   /></a>";
         echo "<a href='?page=accueil'><img class=home src = '../images/home.png' /></a>";
         echo "<a href='?page=deconnexion'><img class=deconnexion src = '../images/deconnexion.png' /></a>";
         echo "<h1>Recto Verso</h1> ";
         }
-        else {
+        else { /*Barre si pas de connexion*/
             echo "<a href='?page=accueil'><img class=home src = '../images/home.png' /></a>";
             echo "<a href='?page=connexion'><img class=login src = '../images/login.png'/></a>";
             echo "<a href='?page=inscription'><img class=inscription src = '../images/inscription.png' /></a>";
@@ -49,11 +52,12 @@ if (!isset($_SESSION)){
         }
         ?>
 
+   <!-- Inclusion des pages -->
     </div>
     <div id="contenu">
       <?php
       if(!isset($_GET["page"]) ) { 
-          $page="accueil";
+          $page="accueil"; //page accueil par défaut
       } else {
           $page=$_GET["page"];
       }

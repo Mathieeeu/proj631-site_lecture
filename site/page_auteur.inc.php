@@ -10,6 +10,7 @@
     biographie TEXT,
     photo VARCHAR,
 */
+
 if (isset($_GET["search"])){
     $search = $_GET["search"];
     $sql = "SELECT * FROM PROJ631_auteur WHERE id_auteur = '".$search."'";
