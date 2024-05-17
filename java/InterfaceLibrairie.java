@@ -138,7 +138,6 @@ public class InterfaceLibrairie extends JFrame {
 
                     // on affiche toutes les colonnes de la table pour sélectionner celle qui doit être modifiée
                     for (String nomDonnee : donnee_selectionnee.getContenu()){
-                        System.out.println("Dans la boucle");
                         JButton choix_colonne=new JButton("<html>"+nomDonnee+"</html>");
                         choix_colonne.setForeground(couleur_boutons);
                         // chaque bouton de choix est ajouté à la zone de choix
@@ -147,7 +146,7 @@ public class InterfaceLibrairie extends JFrame {
                             @Override
                             public void actionPerformed(ActionEvent e) {
                                 // on affiche un JTextField pour permettre de modifier l'élément de la donnée
-                                System.out.println("Une colonne a été sélectionnée");
+                                System.out.println("Modification de "+nomDonnee+" en cours.");
                                 JTextField modification=new JTextField(nomDonnee);
                                 zone_entree.add(modification);
                                 // on récupère l'indexe du nom de la colonne dans la table
@@ -181,11 +180,16 @@ public class InterfaceLibrairie extends JFrame {
         supprimer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Supprimer la donnée sélectionnée
-                System.out.println("Suppression de la donnée "+donnee_selectionnee.affichage_donnee()+" en cours");
-                table_selectionnee.supprimerDonnee(donnee_selectionnee);
-                // mise à jour de l'affichage
-                mise_a_jour_affichage();
+                if (donnee_selectionnee==null){
+                    System.out.println("Aucune donnée sélectionnée");
+                }
+                else{
+                    // Supprimer la donnée sélectionnée
+                    System.out.println("Suppression de la donnée "+donnee_selectionnee.affichage_donnee()+" en cours");
+                    table_selectionnee.supprimerDonnee(donnee_selectionnee);
+                    // mise à jour de l'affichage
+                    mise_a_jour_affichage();
+                }
             }
         });
         supprimer.setForeground(couleur_boutons);
