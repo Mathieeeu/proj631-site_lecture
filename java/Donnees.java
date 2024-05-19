@@ -10,6 +10,10 @@ public class Donnees{
         this.contenu=contenu;
     }
 
+    public Table get_table(){
+        return this.tb;
+    }
+
     public ArrayList<String> getContenu(){
         return this.contenu;
     }
@@ -36,8 +40,10 @@ public class Donnees{
             res+=content+" - \n";
         }
         return res;
+    }
 
-
+    public String get_first_content(){
+        return this.contenu.get(0);
     }
 
     public void supprimerDonnee(){
