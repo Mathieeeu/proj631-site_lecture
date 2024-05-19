@@ -11,7 +11,7 @@ import java.awt.*;
 
 public class InterfaceLibrairie extends JFrame {
     final static int HAUTEUR = 600;
-    final static int LARGEUR = 900;
+    final static int LARGEUR = 1000;
     private Connection con;
     private Table table_auteur;
     private Table table_livre;
