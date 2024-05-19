@@ -14,30 +14,35 @@
 </head>
 
 <?php
-
+$pseudo_oskour = "camasl";
+$pseudo = $_SESSION['identifiant'];
 // Recup user_pp (profil picture)
 //$img_profil = "../images/".$_SESSION["pseudo"]."_pp.jpg";
 
 $test_pseudo_pp = "bernard_tapin";
 $img_profil = "../images/".$test_pseudo_pp."_pp.jpg";
 
-$pseudo = $_SESSION['identifiant'];
+
 // Affichage image de profil, pseudo et date d'inscription
 $sql = "SELECT id_utilisateur, date_inscription FROM PROJ631_utilisateur WHERE pseudo = '".$pseudo."'";
 $result_date = mysqli_query($conn, $sql) or die("Requête invalide: ". mysqli_error( $conn )."\n".$sql);
 $val_date = mysqli_fetch_assoc($result_date);
 
+echo "<div id='debut'> ";
 echo "
-    <div> 
+<div id='container_info_user'> 
+    <div id='info_user'> 
         <picture>
             <source media='(min-width: 650px)' srcset='{$img_profil}'>
             <source media='(min-width: 465px)' srcset='{$img_profil}'>
-            <img src='{$img_profil}' alt='Profil pic' style='width: auto;'>
+            <img id='pfp' src='{$img_profil}' alt='Profil pic' style='width: auto;'>
         </picture>
         <p> Pseudo : ". $pseudo ."</p>
         <p> Date d'inscription : ". $val_date["date_inscription"] ."</p>
-
     </div> 
+    <div id='decoration_user'> 
+    </div> 
+</div> 
 ";
 
 
@@ -61,8 +66,10 @@ echo "</div>";
 //$sql = "SELECT l.titre, l.resume, l.annee_parution, l.genre, l.image FROM PROJ631_livre as l
 //        JOIN PROJ631_wishlist as w ON l.id_livre = w.id_livre
 //        WHERE id_utilisateur = ".$_SESSION['identifiant'].";"
-$sql = "SELECT l.titre, l.resume, l.annee_parution, l.genre, l.image FROM PROJ631_livre as l
+$sql = "SELECT l.titre, l.resume, l.annee_parution, l.genre, l.image, au.nom_prenom_pseudo
+        FROM PROJ631_livre as l
         JOIN PROJ631_wishlist as w ON l.id_livre = w.id_livre
+        JOIN PROJ631_auteur au ON au.id_auteur = l.id_auteur
         WHERE id_utilisateur = ".$val_date["id_utilisateur"].";";
 
 $result_wishlist = mysqli_query($conn, $sql) or die("Requête invalide: ". mysqli_error( $conn )."\n".$sql);
@@ -88,8 +95,8 @@ if(isset( $_GET["type_list"])) {
                     echo "<div class='info_livre'>";
                         echo "<div> Titre : " . $row["titre"] ." ". "</div><br>";
                         echo "<div> Résumé : " . $row["resume"] ." ". "</div><br>";
+                        echo "<div> Auteur : " . $row["nom_prenom_pseudo"] ." ". "</div><br>";
                         echo "<div> Année de parution : " . $row["annee_parution"] ." ". "</div><br>";
-                        
                         echo "<div> Genre : " . $row["genre"] ." ". "</div><br>";
                     echo "</div>";
                     echo "<div class='photo'>";
@@ -110,8 +117,9 @@ if(isset( $_GET["type_list"])) {
                         echo "<div> Titre : " . $row["titre"] ." ". "</div>";
                         echo "<div> Année de parution : " . $row["annee_parution"] ." ". "</div>";
                         echo "<div> Auteur : " . $row["nom_prenom_pseudo"] ." ". "</div>";
-                        echo "<img src='../images/avis/". $row["note"] ."stars.png' alt='rating' style='max-height: 20px;'>";
-
+                        echo "<div class='photo_rating'>";
+                            echo "<img src='../images/avis/". $row["note"] ."stars.png' alt='rating' style='max-height: 20px;margin-left: 10px;'>";
+                        echo "</div>";
                     echo "</div>";
                     //echo "<span class='commentaire'>" . $row["commentaire"] ." ". "</span>";
                     echo "<span class='commentaire'>" . (strlen($row["commentaire"]) > 300 ? substr($row["commentaire"], 0, 300) . "<button class='lire-la-suite'>Lire la suite</button><span class='suite-cachee'>" . substr($row["commentaire"], 300) . "</span>" : $row["commentaire"]) . "</span>";
@@ -123,4 +131,5 @@ if(isset( $_GET["type_list"])) {
         }
     }
 }
+echo "</div> ";
 ?>
