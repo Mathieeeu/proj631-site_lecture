@@ -117,8 +117,9 @@ if(isset( $_GET["type_list"])) {
                         echo "<div> Titre : " . $row["titre"] ." ". "</div>";
                         echo "<div> Année de parution : " . $row["annee_parution"] ." ". "</div>";
                         echo "<div> Auteur : " . $row["nom_prenom_pseudo"] ." ". "</div>";
-                        echo "<img src='../images/avis/". $row["note"] ."stars.png' alt='rating' style='max-height: 20px;'>";
-
+                        echo "<div class='photo_rating'>";
+                            echo "<img src='../images/avis/". $row["note"] ."stars.png' alt='rating' style='max-height: 20px;margin-left: 10px;'>";
+                        echo "</div>";
                     echo "</div>";
                     //echo "<span class='commentaire'>" . $row["commentaire"] ." ". "</span>";
                     echo "<span class='commentaire'>" . (strlen($row["commentaire"]) > 300 ? substr($row["commentaire"], 0, 300) . "<button class='lire-la-suite'>Lire la suite</button><span class='suite-cachee'>" . substr($row["commentaire"], 300) . "</span>" : $row["commentaire"]) . "</span>";
