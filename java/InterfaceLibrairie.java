@@ -2,26 +2,35 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import java.awt.event.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.*;
 
 public class InterfaceLibrairie extends JFrame {
     final static int HAUTEUR = 600;
     final static int LARGEUR = 900;
-    private ArrayList<Table> liste_tables;
+    private Connection con;
+    private Table table_auteur;
+    private Table table_livre;
     private Table table_selectionnee;
     private Donnees donnee_selectionnee;
+    private String auteur_selectionne;
     private JPanel affichage;
     private JPanel zone_ajout;
     private JPanel zone_modification;
     private JComboBox<String> choix_table;
 
-    public InterfaceLibrairie(ArrayList<Table> liste_tables) {
-        this.liste_tables=liste_tables;
+    public InterfaceLibrairie(Connection con,  Table table_auteur, Table table_livre) {
+        this.con=con;
+        this.table_auteur=table_auteur;
+        this.table_livre=table_livre;
         this.setSize(LARGEUR, HAUTEUR);
         this.setTitle("Gestion de la librairie");
-        // on initialise la table selectionnée automatiquement à la première table de la liste
-        this.table_selectionnee=liste_tables.get(0);
+        // on initialise la table selectionnée automatiquement à la première table auteur
+        this.table_selectionnee=table_auteur;
 
         // création du fond
         JPanel fond=new JPanel();
@@ -44,9 +53,30 @@ public class InterfaceLibrairie extends JFrame {
         texte.setFocusable(false);
         selection.add(texte);
 
-        String[] liste_choix=recuperer_tables(liste_tables);
+        // choix de la table à afficher
+        String[] liste_choix={table_auteur.getNom(), table_livre.getNom()};
         choix_table=new JComboBox<>(liste_choix);
         choix_table.setForeground(couleur_texte);
+        choix_table.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Récupérer l'option sélectionnée
+                String selection_table=(String) choix_table.getSelectedItem();
+                System.out.println("Table sélectionnée : " + selection_table);
+                // on associe le nom de la table sélectionnée à la table
+                if (selection_table=="livre"){
+                    table_selectionnee=table_livre;
+                    mise_a_jour_affichage();
+                }
+                else if (selection_table=="auteur"){
+                    table_selectionnee=table_auteur;
+                    mise_a_jour_affichage();
+                }
+                else{
+                    System.out.println("Erreur lors de la selection de la table");
+                }
+            }
+        });
 
         selection.add(choix_table);
         fond.add(selection);
@@ -71,9 +101,35 @@ public class InterfaceLibrairie extends JFrame {
                 // on récupère le nombre de colonnes de la table :
                 ArrayList<String> nomsColonnes=table_selectionnee.getNomsColonnes();
                 // on affiche autant de zone de texte qu'il y a de colonnes pour pouvoir rentrer la nouvelle donnée
-                for (String nomColonne : nomsColonnes) {
-                    JTextField zoneTexte=new JTextField(nomColonne);
-                    zone_ajout.add(zoneTexte);
+                // on a ici une différence entre l'ajout d'un livre ou l'ajout d'un auteur
+                if (table_selectionnee.getNom()=="livre"){
+                    for (String nomColonne : nomsColonnes) {
+                        // l'ajout d'un auteur pour un livre se fait via les auteurs déjà existants
+                        if (nomColonne=="id_auteur"){
+                            ArrayList<Donnees> liste_donnees=table_auteur.getDonnees();
+                            String[] liste_choix=recuperer_element_donnee(liste_donnees, 0);
+                            JComboBox choix_auteur=new JComboBox<>(liste_choix);
+                            choix_auteur.setForeground(couleur_ajout);
+                            choix_auteur.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e){
+                                    // on récupère la donnée auteur
+                                    auteur_selectionne=(String) choix_auteur.getSelectedItem();
+                                }
+                            });
+                            zone_ajout.add(choix_auteur);
+                        }
+                        else{
+                            JTextField zoneTexte=new JTextField(nomColonne);
+                            zone_ajout.add(zoneTexte);
+                        }
+                    }   
+                }
+                else {
+                    for (String nomColonne : nomsColonnes) {
+                        JTextField zoneTexte=new JTextField(nomColonne);
+                        zone_ajout.add(zoneTexte);
+                    }
                 }
 
                 JButton valider=new JButton("Valider");
@@ -82,6 +138,7 @@ public class InterfaceLibrairie extends JFrame {
                     public void actionPerformed(ActionEvent e) {
                         ArrayList<String> textes = new ArrayList<>();
                         boolean texteVide=false;
+                        // on récupère les informations qui ont été entrées via l'interface
                         for (Component comp : zone_ajout.getComponents()) {
                             if (comp instanceof JTextField) {
                                 JTextField textField=(JTextField) comp;
@@ -93,6 +150,31 @@ public class InterfaceLibrairie extends JFrame {
                                 }
                                 textes.add(texte);
                             }
+                            // si on ajoute un livre, il faut aussi ajouter l'id de l'auteur de ce livre :
+                            if (comp instanceof JComboBox){
+                                // on a besoin d'une requête SQL pour récupérer l'id de l'auteur
+                                // on construit la requête SQL
+                                try{
+                                    String sql= "SELECT id_auteur FROM proj631_auteur a WHERE a.nom_prenom_pseudo = '"+auteur_selectionne+"'";
+                                    System.out.println("Requête sql : "+sql);
+                                    PreparedStatement requete=con.prepareStatement(sql);
+                                    ResultSet resultat =requete.executeQuery();
+
+                                    if(resultat.next()){
+                                        int id_auteur=resultat.getInt("id_auteur");
+                                        System.out.println("id_auteur : " + id_auteur);
+                                        textes.add(resultat.getString("id_auteur"));
+                                        auteur_selectionne=null; // on a récupérer les infos, on en a plus besoin
+                                        System.out.println("infos : "+textes);
+                                    }
+                                    else{
+                                        System.out.println("Aucun auteur trouvé");
+                                    }
+                                }
+                                catch(SQLException exc){
+                                    exc.printStackTrace();
+                                }
+                            }
                         }
                         if (!texteVide) {
                             System.out.println("Toutes les colonnes ont été remplies");
@@ -101,7 +183,7 @@ public class InterfaceLibrairie extends JFrame {
                             // on ajoute la donnée à la table selectionnée
                             table_selectionnee.ajouterDonnees(nouvelle_donnee);
                             suppression_zone_ajout();
-                        } 
+                        }    
                     }
                 });
                 zone_ajout.add(valider);               
@@ -109,7 +191,6 @@ public class InterfaceLibrairie extends JFrame {
                 mise_a_jour_affichage();
             }
         });
-        
 
         //MODIFIER UNE DONNEE
         JButton modifier=new JButton("Modifier");
@@ -219,29 +300,16 @@ public class InterfaceLibrairie extends JFrame {
             });
             affichage.add(bouton_donnee);
         }
-
-        choix_table.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Récupérer l'option sélectionnée
-                String selection_table=(String) choix_table.getSelectedItem();
-                System.out.println("Table sélectionnée : " + selection_table);
-                for (Table t : liste_tables) {
-                    if (t.getNom().equals(selection_table)) {
-                        table_selectionnee = t;
-                        mise_a_jour_affichage();
-                    }
-                }
-            }
-        });
     }
+    
 
-    private String[] recuperer_tables(ArrayList<Table> liste_tables) {
-        String[] res=new String[liste_tables.size()];
-        for (int i=0; i<liste_tables.size(); i++) {
-            res[i]=liste_tables.get(i).getNom();
+    private String[] recuperer_element_donnee(ArrayList<Donnees> liste_donnees, int element){
+        String[] res=new String[liste_donnees.size()];
+        for (int i=0; i<liste_donnees.size(); i++) {
+            res[i]=liste_donnees.get(i).get_first_content();
         }
         return res;
+
     }
 
     private void mise_a_jour_affichage() {
@@ -273,6 +341,8 @@ public class InterfaceLibrairie extends JFrame {
         // partie affichage des données
         mise_a_jour_affichage();
 
+        // partie pour la zone de modification d'une donnée
+        // mise à jour de l'affichage pour masquer la zone de modification
         zone_modification.removeAll();
         Color couleur_fond=Color.decode("#fbf2c4");
         zone_modification.setBackground(couleur_fond);
