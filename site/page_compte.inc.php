@@ -14,8 +14,8 @@
 </head>
 
 <?php
-$pseudo = "camasl";
-$pseudo_oskour = $_SESSION['identifiant'];
+$pseudo_oskour = "camasl";
+$pseudo = $_SESSION['identifiant'];
 // Recup user_pp (profil picture)
 //$img_profil = "../images/".$_SESSION["pseudo"]."_pp.jpg";
 
