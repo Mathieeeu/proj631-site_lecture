@@ -2,8 +2,34 @@
   display: flex;
 }
 
-img {
+button {
+  border-radius: 8px;
+  min-width: 100px;
+  min-height: 25px;
+  margin: 15px 15px 0px 0px;
+  background-color: #74a892;
+}
+
+#container_info_user {
+  display: flex;
+}
+
+#info_user {
+  background-color: #008585;
+  border-radius: 15px 0px 0px 15px;
+  width: fit-content;
+  padding: 15px;
+}
+
+#pfp {
   padding-right: 10px;
+  border-radius: 15px;
+}
+
+#decoration_user {
+  background-color: #fbf2c4;
+  width: -webkit-fill-available;
+  border-radius: 0px 15px 15px 0px;
 }
 
 #laWishlist {
@@ -15,17 +41,27 @@ img {
   }
 
 .unWish {
-    display: flex;
-    flex-direction: row-reverse;
-    margin: 1px;
-    /* background-color: gray; */
-    border: 1px solid rgb(4, 0, 255);
-    
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 1px;
+  background-color: #e5c185;
+  /* border: 1px solid rgb(4, 0, 255); */
+  min-height: 200px;
+  align-items: center;
+}
+
+#laWishlist .unWish, #lesAvis .unAvis  {
+  border-radius: 15px;
 }
 
 .info_livre {
   display: flex;
   flex-direction: column;
+}
+
+.photo img {
+  border-radius: 15px;
+  margin: 15;
 }
 
 #lesAvis {
@@ -36,10 +72,13 @@ img {
   }
 
 .unAvis {
-
   display: flex;
+  flex-direction: row;
   margin: 1px;
-  border: 1px solid red;
+  background-color: #e5c185;
+  /* border: 1px solid rgb(4, 0, 255); */
+  min-height: 200px;
+  align-items: center;
 }
 
 .infoAvis div {
@@ -48,7 +87,7 @@ img {
 
 
 .commentaire {
-  margin-left: 10px;
+  margin: 10px;
 }
 
 .suite-cachee {
