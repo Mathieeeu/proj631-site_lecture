@@ -50,6 +50,10 @@ button {
   align-items: center;
 }
 
+.unWish .photo{
+  padding: 10px 0px 10px 10px;
+}
+
 #laWishlist .unWish, #lesAvis .unAvis  {
   border-radius: 15px;
 }
@@ -57,6 +61,7 @@ button {
 .info_livre {
   display: flex;
   flex-direction: column;
+  padding: 10px;
 }
 
 .photo img {
@@ -77,14 +82,22 @@ button {
   margin: 1px;
   background-color: #e5c185;
   /* border: 1px solid rgb(4, 0, 255); */
-  min-height: 200px;
+  /*min-height: 200px;*/
   align-items: center;
+}
+
+.infoAvis {
+  background-color: #008585;
+  border-radius: 15px 0px 0px 15px;
 }
 
 .infoAvis div {
   margin: 10px;
 }
 
+.photo_rating {
+  padding: 10px 0px 10px 10px;
+}
 
 .commentaire {
   margin: 10px;
