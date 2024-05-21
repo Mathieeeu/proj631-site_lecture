@@ -1,15 +1,7 @@
 <link rel="stylesheet" href="css/page_auteur.inc.css"/>
 
 <?php
-/*
-    Format table 'PROJ631_auteur':
-    id_auteur INT,
-    nom_prenom_pseudo VARCHAR,
-    date_naissance DATE,
-    date_deces DATE,
-    biographie TEXT,
-    photo VARCHAR,
-*/
+
 if (isset($_GET["search"])){
     $search = $_GET["search"];
     $sql = "SELECT * FROM PROJ631_auteur WHERE id_auteur = '".$search."'";
