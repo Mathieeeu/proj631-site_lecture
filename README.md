@@ -13,7 +13,9 @@ Le site web
 Lancement 
 ------------
 Aller sur le navigateur de votre choix et ouvrer le site : 
-[lien vers le site](https://tp-epua.univ-savoie.fr/~docherm/proj631_3/site/rectoverso.php)
+[Lien vers le site Recto-verso](https://tp-epua.univ-savoie.fr/~docherm/proj631_3/site/rectoverso.php)
+
+NB : Afin d'avoir accès au site vous devez être connecter au wifi eduroam de l'université savoie mont blanc ou être connecté au VPN.
 
 Utilisation 
 ------------
@@ -29,7 +31,7 @@ L'interface Admin
 ------------
 Lancement 
 ------------
-Dans phpMyAdmin, sur votre ordinateur (cf. lien : http://localhost/phpmyadmin/), créer une base proj631.
+Dans phpMyAdmin, sur votre ordinateur (cf. lien : [Lien vers le phpMyAdmin en local host](http://localhost/phpmyadmin/)), créer une base proj631.
 Ouvrez le fichier InterfaceAdmin_RectoVerso.
 Lancez le.
 
