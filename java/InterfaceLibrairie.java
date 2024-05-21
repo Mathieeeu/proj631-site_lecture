@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.awt.*;
 
 public class InterfaceLibrairie extends JFrame {
-    final static int HAUTEUR = 600;
-    final static int LARGEUR = 1000;
     private Connection con;
     private Table table_auteur;
     private Table table_livre;
@@ -27,7 +25,7 @@ public class InterfaceLibrairie extends JFrame {
         this.con=con;
         this.table_auteur=table_auteur;
         this.table_livre=table_livre;
-        this.setSize(LARGEUR, HAUTEUR);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setTitle("Gestion de la librairie");
         // on initialise la table selectionnée automatiquement à la première table auteur
         this.table_selectionnee=table_auteur;
