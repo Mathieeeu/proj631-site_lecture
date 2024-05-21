@@ -32,6 +32,9 @@ L'interface Admin
 Lancement 
 ------------
 Dans phpMyAdmin, sur votre ordinateur (cf. lien : [Lien vers le phpMyAdmin en local host](http://localhost/phpmyadmin/)), créer une base proj631.
+
+Il faut que Xampp soit ouvert en fond.
+
 Ouvrez le fichier InterfaceAdmin_RectoVerso.
 Lancez le.
 
