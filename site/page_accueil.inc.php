@@ -23,11 +23,12 @@
         
         // Afficher les résultats de la recherche
         while ($row = mysqli_fetch_assoc($result_livre)) {
-            $sql = "SELECT id_livre FROM PROJ631_livre WHERE id_livre = ".$row['id_livre']."";
+            $sql = "SELECT id_livre,image FROM PROJ631_livre WHERE id_livre = ".$row['id_livre']."";
             $result= mysqli_query($conn, $sql);
             $val = mysqli_fetch_assoc($result);
             echo '<diV class=livre>';
             echo "<a href ='?page=livre&search=".$val['id_livre']."'> ". $row['titre']. "</a>";
+            echo "<img src='../images/livre/".$val["image"].".jpg' alt='photo livre'>";
             echo '</div>';
         }
         //Recherche les auteurs
@@ -35,14 +36,25 @@
         $result_auteur = mysqli_query($conn, $requete_auteur);
         // Afficher les résultats de la recherche
         while ($row2 = mysqli_fetch_assoc($result_auteur)) {
-            $sql_auteur = "SELECT id_auteur FROM PROJ631_auteur WHERE id_auteur = ".$row2['id_auteur']."";
-            $result_auteur_id= mysqli_query($conn, $sql_auteur);
-            $val_auteur_id = mysqli_fetch_assoc($result_auteur_id);
+            $sql_auteur = "SELECT id_auteur,photo FROM PROJ631_auteur WHERE id_auteur = ".$row2['id_auteur']."";
+            $result_auteur= mysqli_query($conn, $sql_auteur);
+            $val_auteur = mysqli_fetch_assoc($result_auteur);
             echo '<diV class=auteur>';
-            echo "<a href ='?page=auteur&search=".$val_auteur_id['id_auteur']."'> ". $row2['nom_prenom_pseudo']. "</a>";
+            echo "<a href ='?page=auteur&search=".$val_auteur['id_auteur']."'> ". $row2['nom_prenom_pseudo']. "</a>";
+            echo "<img src='../images/auteur/".$val_auteur["photo"].".jpg' alt='photo auteur'>";
             echo '</div>';
             
         }
+    }
+    else{
+      $sql = "SELECT * FROM PROJ631_livre LIMIT 3";
+      $result = mysqli_query($conn, $sql); 
+      while ($val = mysqli_fetch_assoc($result)){
+        echo '<diV class=livre>';
+        echo "<a href ='?page=livre&search=".$val['id_livre']."'> ". $val['titre']. "</a>";
+        echo "<img src='../images/livre/".$val["image"].".jpg' alt='photo livre'>";
+        echo '</div>';
+      }
     }
 ?>
 </div>
