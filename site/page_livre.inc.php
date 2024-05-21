@@ -70,7 +70,7 @@ if ($_SESSION["connecte"]){
     }
     echo "<div id=publication_commentaire>";
     echo"<h5>Laissez un avis !</h5>";
-    echo "<form action='?page=ajout_avis&search=1' method='post'>";
+    echo "<form action='?page=ajout_avis&search=".$row["id_livre"]."' method='post'>";
     echo "<label class='text'>note/5</label>";
     echo "<input type='text' name='note' id='note' >";
     echo "<label class='text'>commentaire</label>";
