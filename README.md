@@ -19,6 +19,7 @@ Utilisation
 ------------
 -  Si vous avez déjà un compte : connecter vous à votre compte.
 -  Si vous n'avez pas de compte : créer votre compte dans l'onglet inscription.
+
 Dans l'onglet Rechercher, au centre de la page, faite la recherche sur l'écrivain ou le livre de votre choix.
 Des avis sont disponibles en bas de la page concernant le livre en question.
 Sous le nom de l'auteur, vous avez l'ensemble de ses livres (à notre connaissance).
