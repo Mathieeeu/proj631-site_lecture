@@ -13,7 +13,7 @@ Le site web
 Lancement 
 ------------
 Aller sur le navigateur de votre choix et ouvrer le site : [lien vers le site]
-[lien vers le site] : https://tp-epua.univ-savoie.fr/~docherm/proj631_3/site/rectoverso.php
+[lien vers le site]:https://tp-epua.univ-savoie.fr/~docherm/proj631_3/site/rectoverso.php
 
 Utilisation 
 ------------
