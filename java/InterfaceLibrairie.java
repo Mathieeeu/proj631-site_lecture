@@ -42,7 +42,7 @@ public class InterfaceLibrairie extends JFrame {
         selection.setBackground(couleur_selection);
 
         JTextField texte=new JTextField("Selectionner la table ");
-        texte.setPreferredSize(new Dimension(200, 30));
+        texte.setPreferredSize(new Dimension(300, 30));
         texte.setBackground(couleur_selection);
         texte.setBorder(null);
         Color couleur_texte=Color.decode("#c7522a");
@@ -93,6 +93,7 @@ public class InterfaceLibrairie extends JFrame {
                 System.out.println("Ajout d'une donnée en cours dans la table " + table_selectionnee.getNom() + ".");
                 // création de la nouvelle donnée :
                 zone_ajout=new JPanel();
+                zone_ajout.setPreferredSize(new Dimension(700, 30));
                 Color couleur_ajout=Color.decode("#74a892");
                 zone_ajout.setBackground(couleur_ajout);
 
