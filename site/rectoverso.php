@@ -20,16 +20,20 @@ if (!isset($_SESSION)){
     <link rel="stylesheet" type="text/css" href="css/rectoverso.css">
 </head>
 
- <?php
-    $logs = file("../logs.txt");
-    $conn = @mysqli_connect("tp-epua:3308", substr($logs[0],0,-2), substr($logs[1],0,-2));
-    if (mysqli_connect_errno()){
+<?php
+    /* Connection à la bdd locale*/
+    $url = "127.0.0.1";
+    $user = "root";
+    $password = "";
+    $database = "proj631";
+    $conn = @mysqli_connect($url, $user, $password);
+    if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
     } else {
-        mysqli_select_db($conn, substr($logs[0],0,-2));
+        mysqli_select_db($conn, $database);
         mysqli_query($conn, "SET NAMES UTF8");
     }
-?> 
+?>
 
 <body>
     <div id='Barre_horizontale'>
