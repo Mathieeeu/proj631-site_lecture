@@ -1,6 +1,7 @@
 .livre, .auteur {
     background-color: #e5c185;
     display: inline-block;
+    flex-direction: column;
     text-align: center;
     width: 30vh;
     height: 15vw;
@@ -8,7 +9,13 @@
     border: 2px solid #c7522a;
     border-radius: 30px;
     vertical-align: middle;
-      
+}
+
+.livre img, .auteur img{
+    max-width: 10vw;
+    max-height: 20vh;
+    margin: 4vh;
+    border-radius: 10px;
 }
 
 .livre:hover,.livre:focus, .auteur:hover, .auteur:focus{
