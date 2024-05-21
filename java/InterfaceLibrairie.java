@@ -107,7 +107,7 @@ public class InterfaceLibrairie extends JFrame {
                         if (nomColonne=="id_auteur"){
                             ArrayList<Donnees> liste_donnees=table_auteur.getDonnees();
                             String[] liste_choix=recuperer_element_donnee(liste_donnees, 0);
-                            JComboBox choix_auteur=new JComboBox<>(liste_choix);
+                            JComboBox<String> choix_auteur=new JComboBox<>(liste_choix);
                             choix_auteur.setForeground(couleur_ajout);
                             choix_auteur.addActionListener(new ActionListener() {
                                 @Override
@@ -185,7 +185,15 @@ public class InterfaceLibrairie extends JFrame {
                         }    
                     }
                 });
-                zone_ajout.add(valider);               
+                zone_ajout.add(valider); 
+                JPanel oublie=new JPanel();
+                oublie.setPreferredSize(new Dimension(700, 30));
+                oublie.setBackground(couleur_ajout);
+                oublie.setForeground(couleur_boutons);
+                JLabel texte_photo =new JLabel("N'oubliez pas d'ajouter la photo dans le dossier correspondant");
+                texte_photo.setForeground(couleur_boutons);
+                oublie.add(texte_photo); 
+                fond.add(oublie);             
                 fond.add(zone_ajout);
                 mise_a_jour_affichage();
             }
@@ -242,8 +250,8 @@ public class InterfaceLibrairie extends JFrame {
                                         table_selectionnee.modifierDonnee(nomDonnee, donnee_modifiee, index);
                                         suppression_zone_modification();
                                         };
-                                    });
-                                    mise_a_jour_affichage(); 
+                                });
+                                mise_a_jour_affichage(); 
                                 };
                             });   
                         zone_modification.add(zone_choix);
