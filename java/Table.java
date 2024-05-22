@@ -86,6 +86,7 @@ public class Table{
                     if (this.getNomsColonnes().get(i)=="id_auteur"){
                         // on transforme le string correspondant à id_auteur en int
                         sql.append('"' + Integer.parseInt(donnee.getContenu().get(i))+'"');
+                        System.out.println("id de l'auteur : "+Integer.parseInt(donnee.getContenu().get(i)));
                     }
                     else{
                         sql.append('"' + donnee.getContenu().get(i)+'"');
@@ -94,7 +95,8 @@ public class Table{
                         sql.append(", ");
                     }
                 }
-                sql.append(")");
+                
+                sql.append(")");             
 
                 System.out.println("requete sql : "+sql);
                 PreparedStatement requete=con.prepareStatement(sql.toString());
@@ -136,8 +138,6 @@ public class Table{
                     }   
                 }
             }
-            
-
         }   
     }
 
@@ -145,5 +145,16 @@ public class Table{
         //Lorsqu'une donnée est supprimer elle l'est entièrement : pas seulement un élément
         this.donnees.remove(donnee);
         donnee.supprimerDonnee();
+        try{
+            // construction de la requête sql
+            String sql="DELETE FROM `proj631`"+this.getNom()+"WHERE `"+this.getNomsColonnes().get(0)+"` = '"+donnee.get_first_content()+"'";
+            System.out.println("requete sql : "+sql);
+            PreparedStatement requete=con.prepareStatement(sql);
+            requete.executeUpdate();
+            System.out.println("La donnée a été supprimer de la base de donnée");
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
     }
 }
