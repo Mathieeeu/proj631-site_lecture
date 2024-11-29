@@ -1,6 +1,6 @@
 <?php
 if(isset( $_POST["connexion_ok"])){ //si bouton cliqué
-  $sql="SELECT mot_de_passe FROM PROJ631_utilisateur WHERE pseudo LIKE '".$_POST["id"]."'";
+  $sql="SELECT mot_de_passe FROM _PROJ631_utilisateur WHERE pseudo LIKE '".$_POST["id"]."'";
   $result = mysqli_query($conn, $sql) or die("Requête invalide: ". mysqli_error( $conn )."\n".$sql);
   $val = mysqli_fetch_array($result);
 

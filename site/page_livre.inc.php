@@ -15,8 +15,8 @@
 <?php
 if (isset($_GET["search"])){
     $search = $_GET["search"];
-    $sql = "SELECT PROJ631_livre.*,PROJ631_auteur.nom_prenom_pseudo,PROJ631_auteur.id_auteur from PROJ631_livre join PROJ631_auteur on PROJ631_auteur.id_auteur = PROJ631_livre.id_auteur WHERE id_livre='".$search."'";
-    $sqlavis="SELECT PROJ631_avis.* , PROJ631_utilisateur.pseudo FROM PROJ631_avis JOIN PROJ631_utilisateur ON PROJ631_avis.id_utilisateur = PROJ631_utilisateur.id_utilisateur WHERE id_livre ='".$search."'";
+    $sql = "SELECT PROJ631_livre.*,PROJ631_auteur.nom_prenom_pseudo,PROJ631_auteur.id_auteur FROM _PROJ631_livre join PROJ631_auteur on PROJ631_auteur.id_auteur = PROJ631_livre.id_auteur WHERE id_livre='".$search."'";
+    $sqlavis="SELECT PROJ631_avis.* , PROJ631_utilisateur.pseudo FROM _PROJ631_avis JOIN PROJ631_utilisateur ON PROJ631_avis.id_utilisateur = PROJ631_utilisateur.id_utilisateur WHERE id_livre ='".$search."'";
     $result = mysqli_query($conn, $sql);
     $resultAvis=mysqli_query($conn, $sqlavis);
 }
@@ -54,7 +54,7 @@ echo "</div></div>";
 echo "<div id='droite'>";
 echo"<div id='test'>";
 if ($_SESSION["connecte"]){
-    $sql_dans_wishlist = "SELECT * FROM PROJ631_wishlist JOIN PROJ631_utilisateur ON PROJ631_utilisateur.id_utilisateur = PROJ631_wishlist.id_utilisateur WHERE PROJ631_utilisateur.pseudo = '".$_SESSION["identifiant"]."' AND id_livre = '".$_GET["search"]."'";
+    $sql_dans_wishlist = "SELECT * FROM _PROJ631_wishlist JOIN PROJ631_utilisateur ON PROJ631_utilisateur.id_utilisateur = PROJ631_wishlist.id_utilisateur WHERE PROJ631_utilisateur.pseudo = '".$_SESSION["identifiant"]."' AND id_livre = '".$_GET["search"]."'";
     $result_dans_wishlist = mysqli_query($conn, $sql_dans_wishlist);
     if (mysqli_num_rows($result_dans_wishlist) > 0) {
         

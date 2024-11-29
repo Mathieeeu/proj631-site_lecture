@@ -13,7 +13,7 @@
 
 if (isset($_GET["search"])){
     $search = $_GET["search"];
-    $sql = "SELECT * FROM PROJ631_auteur WHERE id_auteur = '".$search."'";
+    $sql = "SELECT * FROM _PROJ631_auteur WHERE id_auteur = '".$search."'";
     $result = mysqli_query($conn, $sql);
     
 }
@@ -45,7 +45,7 @@ echo "<p><b>".$row["nom_prenom_pseudo"]."</b></p>";
 // afficher la liste des oeuves de l'auteur
 echo "<div id='liste_oeuvres'>";
 echo "<b>Oeuvres de l'auteur :</b>";
-$sql = "SELECT id_livre,titre FROM PROJ631_livre WHERE id_auteur = '".$search."'";
+$sql = "SELECT id_livre,titre FROM _PROJ631_livre WHERE id_auteur = '".$search."'";
 $result = mysqli_query($conn, $sql);
 $i = 0;
 echo "<ul>";

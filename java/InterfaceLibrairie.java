@@ -154,7 +154,7 @@ public class InterfaceLibrairie extends JFrame {
                                 // on a besoin d'une requête SQL pour récupérer l'id de l'auteur
                                 // on construit la requête SQL
                                 try{
-                                    String sql= "SELECT id_auteur FROM proj631_auteur a WHERE a.nom_prenom_pseudo = '"+auteur_selectionne+"'";
+                                    String sql= "SELECT id_auteur FROM _PROJ631_auteur a WHERE a.nom_prenom_pseudo = '"+auteur_selectionne+"'";
                                     System.out.println("Requête sql : "+sql);
                                     PreparedStatement requete=con.prepareStatement(sql);
                                     ResultSet resultat =requete.executeQuery();

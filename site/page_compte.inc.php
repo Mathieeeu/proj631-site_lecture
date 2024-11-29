@@ -24,7 +24,7 @@ $img_profil = "../images/".$test_pseudo_pp."_pp.jpg";
 
 
 // Affichage image de profil, pseudo et date d'inscription
-$sql = "SELECT id_utilisateur, date_inscription FROM PROJ631_utilisateur WHERE pseudo = '".$pseudo."'";
+$sql = "SELECT id_utilisateur, date_inscription FROM _PROJ631_utilisateur WHERE pseudo = '".$pseudo."'";
 $result_date = mysqli_query($conn, $sql) or die("Requête invalide: ". mysqli_error( $conn )."\n".$sql);
 $val_date = mysqli_fetch_assoc($result_date);
 
@@ -63,11 +63,11 @@ echo "</div>";
 
 // Requetes pour la wishlist
 
-//$sql = "SELECT l.titre, l.resume, l.annee_parution, l.genre, l.image FROM PROJ631_livre as l
+//$sql = "SELECT l.titre, l.resume, l.annee_parution, l.genre, l.image FROM _PROJ631_livre as l
 //        JOIN PROJ631_wishlist as w ON l.id_livre = w.id_livre
 //        WHERE id_utilisateur = ".$_SESSION['identifiant'].";"
 $sql = "SELECT l.titre, l.resume, l.annee_parution, l.genre, l.image, au.nom_prenom_pseudo
-        FROM PROJ631_livre as l
+        FROM _PROJ631_livre as l
         JOIN PROJ631_wishlist as w ON l.id_livre = w.id_livre
         JOIN PROJ631_auteur au ON au.id_auteur = l.id_auteur
         WHERE id_utilisateur = ".$val_date["id_utilisateur"].";";
@@ -76,7 +76,7 @@ $result_wishlist = mysqli_query($conn, $sql) or die("Requête invalide: ". mysql
 //$val_wishlist = mysqli_fetch_assoc($result_wishlist);
 
 // Requetes pour les avis
-$sql = "SELECT a.note, a.commentaire, l.titre, l.annee_parution, au.nom_prenom_pseudo FROM PROJ631_avis a 
+$sql = "SELECT a.note, a.commentaire, l.titre, l.annee_parution, au.nom_prenom_pseudo FROM _PROJ631_avis a 
 JOIN PROJ631_utilisateur u ON u.id_utilisateur = a.id_utilisateur 
 JOIN PROJ631_livre l ON l.id_livre = a.id_livre
 JOIN PROJ631_auteur au ON au.id_auteur = l.id_auteur

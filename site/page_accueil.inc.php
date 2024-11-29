@@ -18,12 +18,12 @@
         $q = $_GET["q"];        
 
         // Effectuer une recherche dans la base de données
-        $requete_livre = "SELECT * FROM PROJ631_livre WHERE titre LIKE '%" .$q."%'";
+        $requete_livre = "SELECT * FROM _PROJ631_livre WHERE titre LIKE '%" .$q."%'";
         $result_livre = mysqli_query($conn, $requete_livre);
         
         // Afficher les résultats de la recherche
         while ($row = mysqli_fetch_assoc($result_livre)) {
-            $sql = "SELECT id_livre,image FROM PROJ631_livre WHERE id_livre = ".$row['id_livre']."";
+            $sql = "SELECT id_livre,image FROM _PROJ631_livre WHERE id_livre = ".$row['id_livre']."";
             $result= mysqli_query($conn, $sql);
             $val = mysqli_fetch_assoc($result);
             echo '<diV class=livre>';
@@ -32,11 +32,11 @@
             echo '</div>';
         }
         //Recherche les auteurs
-        $requete_auteur = "SELECT * FROM PROJ631_auteur WHERE nom_prenom_pseudo LIKE '%" .$q."%'";
+        $requete_auteur = "SELECT * FROM _PROJ631_auteur WHERE nom_prenom_pseudo LIKE '%" .$q."%'";
         $result_auteur = mysqli_query($conn, $requete_auteur);
         // Afficher les résultats de la recherche
         while ($row2 = mysqli_fetch_assoc($result_auteur)) {
-            $sql_auteur = "SELECT id_auteur,photo FROM PROJ631_auteur WHERE id_auteur = ".$row2['id_auteur']."";
+            $sql_auteur = "SELECT id_auteur,photo FROM _PROJ631_auteur WHERE id_auteur = ".$row2['id_auteur']."";
             $result_auteur= mysqli_query($conn, $sql_auteur);
             $val_auteur = mysqli_fetch_assoc($result_auteur);
             echo '<diV class=auteur>';
@@ -47,7 +47,7 @@
         }
     }
     else{
-      $sql = "SELECT * FROM PROJ631_livre LIMIT 3";
+      $sql = "SELECT * FROM _PROJ631_livre LIMIT 3";
       $result = mysqli_query($conn, $sql); 
       while ($val = mysqli_fetch_assoc($result)){
         echo '<diV class=livre>';

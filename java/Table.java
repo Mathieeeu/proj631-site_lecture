@@ -52,7 +52,7 @@ public class Table{
         // ajout de la donnée dans la bdd
         try{
             // dans un premier temps, on vérifie que la donnée n'est pas déjà dans la bdd
-            StringBuilder verif = new StringBuilder("SELECT COUNT(*) FROM proj631_"+this.getNom()+" WHERE ");
+            StringBuilder verif = new StringBuilder("SELECT COUNT(*) FROM _PROJ631_"+this.getNom()+" WHERE ");
             // on ajoute chaque info de la donnée
             for(int i=0; i<this.getNbColonnes();i++){
                 verif.append(this.getNomsColonnes().get(i)+"=" + '"'+donnee.getContenu().get(i)+'"');
