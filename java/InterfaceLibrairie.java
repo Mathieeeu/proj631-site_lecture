@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.awt.*;
 
 public class InterfaceLibrairie extends JFrame {
+    final static int HAUTEUR = 600;
+    final static int LARGEUR = 1000;
     private Connection con;
     private Table table_auteur;
     private Table table_livre;
@@ -25,7 +27,7 @@ public class InterfaceLibrairie extends JFrame {
         this.con=con;
         this.table_auteur=table_auteur;
         this.table_livre=table_livre;
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setSize(LARGEUR, HAUTEUR);
         this.setTitle("Gestion de la librairie");
         // on initialise la table selectionnée automatiquement à la première table auteur
         this.table_selectionnee=table_auteur;
@@ -42,7 +44,7 @@ public class InterfaceLibrairie extends JFrame {
         selection.setBackground(couleur_selection);
 
         JTextField texte=new JTextField("Selectionner la table ");
-        texte.setPreferredSize(new Dimension(300, 30));
+        texte.setPreferredSize(new Dimension(200, 30));
         texte.setBackground(couleur_selection);
         texte.setBorder(null);
         Color couleur_texte=Color.decode("#c7522a");
@@ -93,7 +95,7 @@ public class InterfaceLibrairie extends JFrame {
                 System.out.println("Ajout d'une donnée en cours dans la table " + table_selectionnee.getNom() + ".");
                 // création de la nouvelle donnée :
                 zone_ajout=new JPanel();
-                zone_ajout.setPreferredSize(new Dimension(700, 30));
+                //zone_ajout.setPreferredSize(new Dimension(500, 60));
                 Color couleur_ajout=Color.decode("#74a892");
                 zone_ajout.setBackground(couleur_ajout);
 
@@ -107,7 +109,7 @@ public class InterfaceLibrairie extends JFrame {
                         if (nomColonne=="id_auteur"){
                             ArrayList<Donnees> liste_donnees=table_auteur.getDonnees();
                             String[] liste_choix=recuperer_element_donnee(liste_donnees, 0);
-                            JComboBox<String> choix_auteur=new JComboBox<>(liste_choix);
+                            JComboBox choix_auteur=new JComboBox<>(liste_choix);
                             choix_auteur.setForeground(couleur_ajout);
                             choix_auteur.addActionListener(new ActionListener() {
                                 @Override
@@ -185,15 +187,14 @@ public class InterfaceLibrairie extends JFrame {
                         }    
                     }
                 });
-                zone_ajout.add(valider); 
+                zone_ajout.add(valider);
                 JPanel oublie=new JPanel();
-                oublie.setPreferredSize(new Dimension(700, 30));
                 oublie.setBackground(couleur_ajout);
                 oublie.setForeground(couleur_boutons);
-                JLabel texte_photo =new JLabel("N'oubliez pas d'ajouter la photo dans le dossier correspondant");
+                JLabel texte_photo=new JLabel("N'oubliez pas d'ajouter la photo dans le dossier correspondant");
                 texte_photo.setForeground(couleur_boutons);
                 oublie.add(texte_photo); 
-                fond.add(oublie);             
+                zone_ajout.add(oublie);              
                 fond.add(zone_ajout);
                 mise_a_jour_affichage();
             }
@@ -250,8 +251,8 @@ public class InterfaceLibrairie extends JFrame {
                                         table_selectionnee.modifierDonnee(nomDonnee, donnee_modifiee, index);
                                         suppression_zone_modification();
                                         };
-                                });
-                                mise_a_jour_affichage(); 
+                                    });
+                                    mise_a_jour_affichage(); 
                                 };
                             });   
                         zone_modification.add(zone_choix);

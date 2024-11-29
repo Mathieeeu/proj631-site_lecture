@@ -1,4 +1,4 @@
-Site Recto-Verso : la lecture pour tous
+Site Recto-Verso : Le site qui vous donne envie de lire des livres ! 
 ============
 
 
